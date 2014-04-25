@@ -4,6 +4,6 @@ include Kabal
 
 class KabalTest < TestCase
   def test_to_text
-    assert Kabal.to_text 1
+    assert_equal Kabal.to_text(1), "один"
   end
 end
