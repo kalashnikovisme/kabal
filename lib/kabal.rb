@@ -1,5 +1,8 @@
-require "kabal/version"
+autoload :Version, "kabal/version"
+require 'yaml'
 
 module Kabal
-  # Your code goes here...
+  def to_text(number)
+    YAML.load_file('names/ru.yml')
+  end
 end
