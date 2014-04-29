@@ -24,4 +24,23 @@ class Kabal::Russian < Kabal::Language
     return number_name += " " + single(number % 100) if (number % 100 != 0)
     number_name
   end
+
+  def self.ten_powers(number)
+    number_order = (number.to_s.length / 3) * 3
+    number_name = count_name(number) + " " + names[lang]["ten_powers"][number_order]
+    return number_name += " " + three_words(number % 1000) if (number % 1000 >= 100)
+    return number_name += " " + two_words(number % 100) if (number % 100 >= 20)
+    return number_name += " " + single(number % 100) if (number % 100 != 0)
+  end
+
+  def self.count_name(number)
+    #FIXME find better way
+    number_order = (number.to_s.length / 3) * 3
+    count = number / (10 ** number_order)
+    if (count % 10 == 1 or count % 10 == 2) and number_order == 3
+      names[lang]["single_feminine"][count]
+    else
+      names[lang]["single"][count]
+    end
+  end
 end
