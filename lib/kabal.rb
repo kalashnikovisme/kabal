@@ -6,7 +6,7 @@ module Kabal
   include SupportedLanguages
 
   def to_text(number)
-    names = YAML.load_file('yaml/languages/ru.yml')
-    names[Russian.abbreviation]["single"][number]
+
+    Russian.convert number
   end
 end
