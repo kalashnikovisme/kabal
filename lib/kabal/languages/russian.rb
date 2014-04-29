@@ -34,7 +34,8 @@ class Kabal::Russian < Kabal::Language
   def self.ten_powers(number)
     #FIXME find better way
     number_order = ((number.to_s.length - 1) / 3) * 3
-    number_name = count_name(number) + " " + names[lang]["ten_powers"][number_order]
+    count = number / (10 ** number_order)
+    number_name = count_name(number) + " " + name_with_declination(count, names[lang]["ten_powers"][number_order])
     number_name += " " + three_words(number % 1000) if (number % 1000 >= 100)
   end
 
@@ -49,6 +50,11 @@ class Kabal::Russian < Kabal::Language
     end
   end
 
-  def self.declination(number)
+  def self.name_with_declination(count, ten_power_name)
+    if ten_power_name[-1, 1] == "а"
+      Russian.p(count, ten_power_name, ten_power_name[-1, 1] = "и", ten_power_name[0..4])
+    else
+      Russian.p(count, ten_power_name, ten_power_name.insert(ten_power_name.length, "а"), ten_power_name.insert(ten_power_name.length, "ов"))
+    end
   end
 end
