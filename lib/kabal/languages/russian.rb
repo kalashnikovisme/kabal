@@ -48,4 +48,7 @@ class Kabal::Russian < Kabal::Language
       three_words count
     end
   end
+
+  def self.declination(number)
+  end
 end
