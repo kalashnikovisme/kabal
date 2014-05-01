@@ -1,4 +1,5 @@
 require 'kabal/languages/language'
+require 'kabal/languages/russian/declinations'
 
 class Kabal::Russian < Kabal::Language
   def convert(number)
@@ -50,23 +51,15 @@ class Kabal::Russian < Kabal::Language
       return names[lang]["ten_powers"][100]
     end
     if @number_name.nil?
-      @number_name = count_name + " " + name_with_declination(names[lang]["ten_powers"][@number_order])
+      @number_name = count_name + " " + Declinations.name_with_declination(names[lang]["ten_powers"][@number_order], @count)
     elsif @count != 0
-      @number_name += " " + count_name + " " + name_with_declination(names[lang]["ten_powers"][@number_order])
+      @number_name += " " + count_name + " " + Declinations.name_with_declination(names[lang]["ten_powers"][@number_order], @count)
     end
     ten_powers(number % (10 ** @number_order))
   end
 
   def count_name
     three_words @count
-  end
-
-  def name_with_declination(ten_power_name)
-    if ten_power_name[-1, 1] == "а"
-      Russian.p(@count, ten_power_name, ten_power_name[0..4] + "и", ten_power_name[0..4])
-    else
-      Russian.p(@count, ten_power_name, ten_power_name + "а", ten_power_name + "ов")
-    end
   end
 
   def number_is_google?
