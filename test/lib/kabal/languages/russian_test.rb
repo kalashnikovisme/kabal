@@ -35,4 +35,10 @@ class RussianTest < TestCase
   def test_to_text_with_thousands
     assert_equal @rus.convert(22000), "двадцать две тысячи"
   end
+  def test_to_text_with_negative_number
+    exception = assert_raises RuntimeError do
+      @rus.convert -1
+    end
+    assert_equal NumberOutRangeError.message, exception.message
+  end
 end
