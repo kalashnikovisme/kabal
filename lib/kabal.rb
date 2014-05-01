@@ -6,7 +6,7 @@ module Kabal
   include SupportedLanguages
 
   def to_text(number)
-
-    Russian.convert number
+    rus = Russian.new
+    rus.convert number
   end
 end

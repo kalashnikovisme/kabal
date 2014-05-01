@@ -6,3 +6,4 @@ gem 'turn'
 gem 'pry'
 gem 'tconsole', git: "git://github.com/gma/tconsole"
 gem 'minitest', '4.7.5'
+gem 'russian'
