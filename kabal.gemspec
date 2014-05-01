@@ -6,7 +6,7 @@ require 'kabal/version'
 Gem::Specification.new do |spec|
   spec.name          = "kabal"
   spec.version       = Kabal::VERSION
-  spec.authors       = ["pavel"]
+  spec.authors       = ["Pavel Kalashnikov"]
   spec.email         = ["kalashnikovisme@gmail.com"]
   spec.summary       = %q{Number To Text Helper}
   spec.description   = %q{Kabal allows you to translate numbers into text.}
@@ -20,4 +20,5 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.6"
   spec.add_development_dependency "rake"
+  spec.add_development_dependency "russian"
 end
