@@ -21,12 +21,35 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Kabal has one main feature - number to text "converting".
+
+    require 'kabal'
+    Kabal.to_text 1 #=> "один"
+    
+You can choose language to "converting".
+
+    Kabal.language = "Russian"
+    
+Supported Languages:
+
+* Russian
+
+*More languages will be added later.*
 
 ## Contributing
 
 1. Fork it ( https://github.com/[my-github-username]/kabal/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
+2. Create your feature branch (`git flow feature start new_super_feature`)
+3. Commit your changes (`git commit`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
+
+## How add languages
+
+To add Elfin language you should:
+
+1. Create *lib/kabal/languages/elfin.rb*. You'll describe rules of this language to drawing numbers there.
+2. Create *test/lib/kabal/languages/elfin_test.rb*. You'll cover your code by tests there.
+3. Create *yaml/languages/el.yml*. You'll add numbers and words, which they correspond, there.
+4. Add *Elfin: "el"* to *yaml/languages.yml*.
+5. Add *require "kabal/languages/elfin"* to *lib/kabal/supported_languages.rb*
