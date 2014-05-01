@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/kalashnikovisme/kabal.svg?branch=master)](https://travis-ci.org/kalashnikovisme/kabal)
 [![Coverage Status](https://coveralls.io/repos/kalashnikovisme/kabal/badge.png?branch=master)](https://coveralls.io/r/kalashnikovisme/kabal?branch=master)
 
-TODO: Write a gem description
+Kabal allows you to translate number into text.
 
 ## Installation
 
