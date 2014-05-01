@@ -13,9 +13,7 @@ class Kabal::Russian < Kabal::Language
   end
 
   def two_words(number)
-    if number / 10 == 0
-      return single number
-    end
+    return single number if number / 10 == 0
     number_name = names[lang]["two_words"][number / 10]
     number_name += " " + single(number % 10) if (number % 10 != 0)
     number_name
@@ -34,23 +32,23 @@ class Kabal::Russian < Kabal::Language
   def ten_powers(number)
     #FIXME find better way
     number_order = ((number.to_s.length - 1) / 3) * 3
+    if number_order < 3
+      unless number == 0
+        @number_name += " " + three_words(number % 1000)
+      end
+      return @number_name
+    end
     count = number / (10 ** number_order)
     if @number_name.nil?
-      @number_name = count_name(number) + " " + name_with_declination(count, names[lang]["ten_powers"][number_order])
-    else
-      @number_name += " " + count_name(number) + " " + name_with_declination(count, names[lang]["ten_powers"][number_order])
+      @number_name = count_name(count, number_order) + " " + name_with_declination(count, names[lang]["ten_powers"][number_order])
+    elsif count != 0
+      @number_name += " " + count_name(count, number_order) + " " + name_with_declination(count, names[lang]["ten_powers"][number_order])
     end
-    if number_order == 3
-      @number_name += " " + three_words(number % 1000) if (number % 1000 >= 100)
-    else
-      ten_powers(number % (10 ** number_order))
-    end
+    ten_powers(number % (10 ** number_order))
   end
 
-  def count_name(number)
+  def count_name(count, number_order)
     #FIXME find better way
-    number_order = ((number.to_s.length - 1) / 3) * 3
-    count = number / (10 ** number_order)
     if (count % 10 == 1 or count % 10 == 2) and number_order == 3
       names[lang]["single_feminine"][count]
     else
