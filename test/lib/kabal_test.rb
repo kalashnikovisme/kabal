@@ -11,4 +11,8 @@ class KabalTest < TestCase
   def test_to_text
     assert_equal Kabal.to_text(125125125125), "сто двадцать пять миллиардов сто двадцать пять миллионов сто двадцать пять тысяч сто двадцать пять"
   end
+
+  def test_to_text_in_language
+    assert_equal Kabal.to_text_in_language(125125125125, "Russian"), "сто двадцать пять миллиардов сто двадцать пять миллионов сто двадцать пять тысяч сто двадцать пять"
+  end
 end

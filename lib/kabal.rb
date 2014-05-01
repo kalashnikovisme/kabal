@@ -7,7 +7,6 @@ module Kabal
 
   def to_text(number)
     @language ||= "Russian"
-    language_class =
     obj = Object.const_get("Kabal::" + @language).new
     obj.convert number
   end
@@ -16,6 +15,14 @@ module Kabal
     languages = YAML.load_file('yaml/languages.yml')
     if languages[language_to_set]
       @language = language_to_set
+    end
+  end
+
+  def to_text_in_language(number, language_at_once)
+    languages = YAML.load_file('yaml/languages.yml')
+    if languages[language_at_once]
+      obj = Object.const_get("Kabal::" + language_at_once).new
+      obj.convert number
     end
   end
 
