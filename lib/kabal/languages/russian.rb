@@ -2,6 +2,9 @@ require 'kabal/languages/language'
 
 class Kabal::Russian < Kabal::Language
   def convert(number)
+    #FIXME find way to get min and max from yml file
+    raise NumberOutRangeError.message if number < 0 or number >= 10 ** 102
+    #FIXME switch case next lines
     return single(number) if number >= 0 and number <= 19
     return two_words(number) if number >= 20 and number <= 99
     return three_words(number) if number >= 100 and number <= 999
