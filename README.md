@@ -38,7 +38,7 @@ Supported Languages:
 
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/kabal/fork )
+1. Fork it ( https://github.com/kalashnikovisme/kabal/fork )
 2. Create your feature branch (`git flow feature start new_super_feature`)
 3. Commit your changes (`git commit`)
 4. Push to the branch (`git push origin my-new-feature`)
