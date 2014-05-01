@@ -1,5 +1,7 @@
 # Kabal
 
+[![Build Status](https://travis-ci.org/kalashnikovisme/kabal.svg?branch=master)](https://travis-ci.org/kalashnikovisme/kabal)
+
 TODO: Write a gem description
 
 ## Installation

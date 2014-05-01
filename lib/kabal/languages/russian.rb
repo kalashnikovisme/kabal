@@ -9,7 +9,11 @@ class Kabal::Russian < Kabal::Language
   end
 
   def single(number)
-    names[lang]["single"][number]
+    if (number == 1 or number == 2) and @count and @count / 10 != 1 and @number_order == 3
+      names[lang]["single_feminine"][@count % 10]
+    else
+      names[lang]["single"][number]
+    end
   end
 
   def two_words(number)
@@ -31,43 +35,38 @@ class Kabal::Russian < Kabal::Language
 
   def ten_powers(number)
     #FIXME find better way
-    number_order = ((number.to_s.length - 1) / 3) * 3
-    if number_order < 3
+    @number_order = ((number.to_s.length - 1) / 3) * 3
+    if @number_order < 3
       unless number == 0
         @number_name += " " + three_words(number % 1000)
       end
       return @number_name
     end
-    count = number / (10 ** number_order)
-    if number_is_google?(number_order, count)
+    @count = number / (10 ** @number_order)
+    if number_is_google?
       return names[lang]["ten_powers"][100]
     end
     if @number_name.nil?
-      @number_name = count_name(count, number_order) + " " + name_with_declination(count, names[lang]["ten_powers"][number_order])
-    elsif count != 0
-      @number_name += " " + count_name(count, number_order) + " " + name_with_declination(count, names[lang]["ten_powers"][number_order])
+      @number_name = count_name + " " + name_with_declination(names[lang]["ten_powers"][@number_order])
+    elsif @count != 0
+      @number_name += " " + count_name + " " + name_with_declination(names[lang]["ten_powers"][@number_order])
     end
-    ten_powers(number % (10 ** number_order))
+    ten_powers(number % (10 ** @number_order))
   end
 
-  def count_name(count, number_order)
-    #FIXME find better way
-    if (count % 10 == 1 or count % 10 == 2) and number_order == 3
-      names[lang]["single_feminine"][count]
-    else
-      three_words count
-    end
+  def count_name
+    three_words @count
   end
 
-  def name_with_declination(count, ten_power_name)
+  def name_with_declination(ten_power_name)
     if ten_power_name[-1, 1] == "а"
-      Russian.p(count, ten_power_name, ten_power_name[-1, 1] = "и", ten_power_name[0..4])
+      Russian.p(@count, ten_power_name, ten_power_name[0..4] + "и", ten_power_name[0..4])
     else
-      Russian.p(count, ten_power_name, ten_power_name + "а", ten_power_name + "ов")
+      Russian.p(@count, ten_power_name, ten_power_name + "а", ten_power_name + "ов")
     end
   end
 
-  def number_is_google?(number_order, count)
-    count == 10 and number_order == 99
+  def number_is_google?
+    @count == 10 and @number_order == 99
   end
 end
