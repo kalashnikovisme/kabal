@@ -15,6 +15,8 @@ module Kabal
     languages = YAML.load_file('yaml/languages.yml')
     if languages[language_to_set]
       @language = language_to_set
+    else
+      raise NoLanguageSupportError.message
     end
   end
 
@@ -23,6 +25,8 @@ module Kabal
     if languages[language_at_once]
       obj = Object.const_get("Kabal::" + language_at_once).new
       obj.convert number
+    else
+      raise NoLanguageSupportError.message
     end
   end
 
