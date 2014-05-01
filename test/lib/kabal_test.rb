@@ -3,34 +3,32 @@ require 'test_helper'
 include Kabal
 
 class KabalTest < TestCase
-  def test_to_text_with_single_number
-    assert_equal Kabal.to_text(1), "один"
+  def test_language_init
+    Kabal.language = "Russian"
+    assert_equal Kabal.current_language, "Russian"
   end
-  def test_to_text_with_two_words_number
-    assert_equal Kabal.to_text(25), "двадцать пять"
+
+  def test_to_text
+    assert_equal Kabal.to_text(125125125125), "сто двадцать пять миллиардов сто двадцать пять миллионов сто двадцать пять тысяч сто двадцать пять"
   end
-  def test_to_text_with_three_words_number
-    assert_equal Kabal.to_text(625), "шестьсот двадцать пять"
+
+  def test_to_text_in_language
+    assert_equal Kabal.to_text_in_language(125125125125, "Russian"), "сто двадцать пять миллиардов сто двадцать пять миллионов сто двадцать пять тысяч сто двадцать пять"
   end
-  def test_to_text_with_ten_powers
-    assert_equal Kabal.to_text(125625), "сто двадцать пять тысяч шестьсот двадцать пять"
+
+  def test_to_text_in_language_with_unsupported_language
+    #FIXME replace RuntimeError to NoLanguageSupportError
+    exception = assert_raises RuntimeError do
+      Kabal.to_text_in_language(125125125125, "Elfin")
+    end
+    assert_equal NoLanguageSupportError.message, exception.message
   end
-  def test_to_text_with_ten_powers_millions
-    assert_equal Kabal.to_text(125125625), "сто двадцать пять миллионов сто двадцать пять тысяч шестьсот двадцать пять"
-  end
-  def test_to_text_with_ten_powers_some_number
-    assert_equal Kabal.to_text(1000001), "один миллион один"
-  end
-  def test_to_text_with_google
-    assert_equal Kabal.to_text(10 ** 100), "гугол"
-  end
-  def test_to_text_with_three_words_without_second_order
-    assert_equal Kabal.to_text(101), "сто один"
-  end
-  def test_to_text_with_three_words_without_first_and_second_order
-    assert_equal Kabal.to_text(200), "двести"
-  end
-  def test_to_text_with_thousands
-    assert_equal Kabal.to_text(22000), "двадцать две тысячи"
+
+  def test_language_init_with_unsupported_language
+    #FIXME replace RuntimeError to NoLanguageSupportError
+    exception = assert_raises RuntimeError do
+      Kabal.language = "Elfin"
+    end
+    assert_equal NoLanguageSupportError.message, exception.message
   end
 end
