@@ -1,3 +1,4 @@
 module Kabal::SupportedLanguages
-  autoload 'Russian', 'kabal/languages/russian'
+  #FIXME add autoload
+  require 'kabal/languages/russian'
 end
