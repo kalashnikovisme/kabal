@@ -51,9 +51,8 @@ class Kabal::Russian < Kabal::Language
   end
 
   def count_name(count, number_order)
-    #FIXME find better way
-    if (count % 10 == 1 or count % 10 == 2) and number_order == 3
-      names[lang]["single_feminine"][count]
+    if (count % 10 == 1 or count % 10 == 2) and count / 10 != 1 and number_order == 3
+      names[lang]["single_feminine"][count % 10]
     else
       three_words count
     end
@@ -61,7 +60,7 @@ class Kabal::Russian < Kabal::Language
 
   def name_with_declination(count, ten_power_name)
     if ten_power_name[-1, 1] == "а"
-      Russian.p(count, ten_power_name, ten_power_name[-1, 1] = "и", ten_power_name[0..4])
+      Russian.p(count, ten_power_name, ten_power_name[0..4] + "и", ten_power_name[0..4])
     else
       Russian.p(count, ten_power_name, ten_power_name + "а", ten_power_name + "ов")
     end
