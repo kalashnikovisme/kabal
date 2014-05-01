@@ -13,7 +13,7 @@ class Kabal::Russian < Kabal::Language
   end
 
   def two_words(number)
-    return single number if number / 10 == 0
+    return single number if number <= 19
     number_name = names[lang]["two_words"][number / 10]
     number_name += " " + single(number % 10) if (number % 10 != 0)
     number_name
@@ -39,6 +39,9 @@ class Kabal::Russian < Kabal::Language
       return @number_name
     end
     count = number / (10 ** number_order)
+    if number_is_google?(number_order, count)
+      return names[lang]["ten_powers"][100]
+    end
     if @number_name.nil?
       @number_name = count_name(count, number_order) + " " + name_with_declination(count, names[lang]["ten_powers"][number_order])
     elsif count != 0
@@ -62,5 +65,9 @@ class Kabal::Russian < Kabal::Language
     else
       Russian.p(count, ten_power_name, ten_power_name + "а", ten_power_name + "ов")
     end
+  end
+
+  def number_is_google?(number_order, count)
+    count == 10 and number_order == 99
   end
 end
