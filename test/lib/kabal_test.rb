@@ -19,10 +19,18 @@ class KabalTest < TestCase
     assert_equal Kabal.to_text(125125625), "сто двадцать пять миллионов сто двадцать пять тысяч шестьсот двадцать пять"
   end
   def test_to_text_with_ten_powers_some_number
-    #assert_equal Kabal.to_text(89032511), "один миллион один"
     assert_equal Kabal.to_text(1000001), "один миллион один"
   end
   def test_to_text_with_google
     assert_equal Kabal.to_text(10 ** 100), "гугол"
+  end
+  def test_to_text_with_three_words_without_second_order
+    assert_equal Kabal.to_text(101), "сто один"
+  end
+  def test_to_text_with_three_words_without_first_and_second_order
+    assert_equal Kabal.to_text(200), "двести"
+  end
+  def test_to_text_with_thousands
+    assert_equal Kabal.to_text(22000), "двадцать две тысячи"
   end
 end
