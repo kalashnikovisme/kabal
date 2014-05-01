@@ -48,8 +48,8 @@ Supported Languages:
 
 To add Elfin language you should:
 
-1. Create *lib/kabal/languages/elfin.rb*. You'll describe rules of this language to drawing numbers there.
-2. Create *test/lib/kabal/languages/elfin_test.rb*. You'll cover your code by tests there.
-3. Create *yaml/languages/el.yml*. You'll add numbers and words, which they correspond, there.
-4. Add *Elfin: "el"* to *yaml/languages.yml*.
-5. Add *require "kabal/languages/elfin"* to *lib/kabal/supported_languages.rb*
+1. Create `lib/kabal/languages/elfin.rb`. You'll describe rules of this language to drawing numbers there.
+2. Create `test/lib/kabal/languages/elfin_test.rb`. You'll cover your code by tests there.
+3. Create `yaml/languages/el.yml`. You'll add numbers and words, which they correspond, there.
+4. Add `Elfin: "el"` to `yaml/languages.yml`.
+5. Add `require "kabal/languages/elfin"` to `lib/kabal/supported_languages.rb`.
