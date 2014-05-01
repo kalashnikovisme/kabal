@@ -15,4 +15,10 @@ class KabalTest < TestCase
   def test_to_text_with_ten_powers
     assert_equal Kabal.to_text(125625), "сто двадцать пять тысяч шестьсот двадцать пять"
   end
+  def test_to_text_with_ten_powers_millions
+    assert_equal Kabal.to_text(125125625), "сто двадцать пять миллионов сто двадцать пять тысяч шестьсот двадцать пять"
+  end
+  #def test_to_text_with_ten_powers_some_number
+  #  assert_equal Kabal.to_text(1000000), "сто двадцать пять миллионов сто двадцать пять тысяч шестьсот двадцать пять"
+  #end
 end
