@@ -1,5 +1,6 @@
 class Declinations
   def self.name_with_declination(ten_power_name, count)
+    #FIXME add gem russian
     if ten_power_name[-1, 1] == "а"
       return ten_power_name if ends_with_one? count
       return ten_power_name[0..4] + "и" if end_with_two_or_three_of_four? count
