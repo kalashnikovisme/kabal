@@ -1,0 +1,6 @@
+TConsole::Config.run do |config|
+  config.file_sets = {
+    "all" => ["test/**/*_test.rb"],
+    "bigtest" => ["test/lib/bigtest.rb"]
+  }
+end
