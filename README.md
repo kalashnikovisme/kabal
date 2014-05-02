@@ -24,6 +24,7 @@ Or install it yourself as:
 Kabal has one main feature - number to text "converting".
 
     require 'kabal'
+    include Kabal
     Kabal.to_text 1 #=> "один"
     
 You can choose language to "converting".
