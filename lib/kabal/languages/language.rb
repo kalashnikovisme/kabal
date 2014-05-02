@@ -8,5 +8,9 @@ module Kabal
     def names
       YamlLoader.yaml_object "languages/#{lang}"
     end
+
+    def minus
+      YamlLoader.yaml_object("languages/#{lang}")[lang]["minus"]
+    end
   end
 end

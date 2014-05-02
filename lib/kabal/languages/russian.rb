@@ -4,12 +4,22 @@ require 'kabal/languages/russian/declinations'
 class Kabal::Russian < Kabal::Language
   def convert(number)
     #FIXME find way to get min and max from yml file
-    raise NumberOutRangeError.message if number < 0 or number >= 10 ** 102
+    raise NumberOutRangeError.message if number <= -(10 ** 102) or number >= 10 ** 102
+    #FIXME find better way
+    @number_name = nil
+    need_minus?(number) ? (minus + " " + natural_number_name(-number)) : natural_number_name(number)
+  end
+
+  def natural_number_name(number)
     #FIXME switch case next lines
     return single(number) if number >= 0 and number <= 19
     return two_words(number) if number >= 20 and number <= 99
     return three_words(number) if number >= 100 and number <= 999
     ten_powers(number) if number >= 1000
+  end
+
+  def need_minus?(number)
+    number < 0
   end
 
   def single(number)
@@ -61,9 +71,7 @@ class Kabal::Russian < Kabal::Language
   end
 
   def less_thousands(number)
-    unless number == 0
-      @number_name += " " + three_words(number % 1000)
-    end
+    @number_name += " " + three_words(number % 1000) unless number == 0
   end
 
   def number_is_thousands?(number)
