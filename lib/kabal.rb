@@ -1,11 +1,13 @@
 autoload :Version, "kabal/version"
 require "kabal/supported_languages"
 require "kabal/errors"
+require "kabal/config"
 require 'yaml'
 
 module Kabal
   include SupportedLanguages
   include Errors
+  include Config
 
   def to_text(number)
     @language ||= "Russian"
