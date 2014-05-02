@@ -1,12 +1,12 @@
 module Kabal
   class Language
     def lang
-      languages = YAML.load_file('yaml/languages.yml')
+      languages = YamlLoader.yaml_object "languages"
       @lang = languages[self.to_s.split(":")[-2]]
     end
 
     def names
-      YAML.load_file("yaml/languages/#{lang}.yml")
+      YamlLoader.yaml_object "languages/#{lang}"
     end
   end
 end
