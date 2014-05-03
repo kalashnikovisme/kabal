@@ -4,6 +4,9 @@
 [![Coverage Status](https://coveralls.io/repos/kalashnikovisme/kabal/badge.png?branch=master)](https://coveralls.io/r/kalashnikovisme/kabal?branch=master)
 [![Gem Version](https://badge.fury.io/rb/kabal.svg)](http://badge.fury.io/rb/kabal)
 [![endorse](https://api.coderwall.com/kalashnikovisme/endorsecount.png)](https://coderwall.com/kalashnikovisme)
+[![Dependency Status](https://gemnasium.com/kalashnikovisme/kabal.svg)](https://gemnasium.com/kalashnikovisme/kabal)
+[![Still MainTained](http://stillmaintained.com/kalashnikovisme/kabal.png)](http://stillmaintained.com/kalashnikovisme/kabal)
+
 
 Kabal allows you to translate number into text.
 
@@ -25,19 +28,25 @@ Or install it yourself as:
 
 Kabal has one main feature - number to text "converting".
 
-    require 'kabal'
-    include Kabal
-    Kabal.to_text 1 #=> "один"
+    $> require 'kabal'
+    $> include Kabal
+    $> Kabal.to_text 1 #=> "один"
+    $> Kabal.to_text -1000000 #=> "минус один миллион"
 
 You can choose language to "converting".
 
-    Kabal.language = "Russian"
+    $> Kabal.language = "Russian"
+    $> Kabal.current_language #=> "Russian"
 
 Supported Languages:
 
 * Russian
 
 *More languages will be added later.*
+
+You can see actual list of supported languages:
+
+    $> Kabal.supported_languages #=> ["Russian"]
 
 ## Contributing
 

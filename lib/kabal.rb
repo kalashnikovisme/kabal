@@ -35,7 +35,7 @@ module Kabal
   end
 
   def current_language
-    @language
+    @language ||= "Russian"
   end
 
   def supported_languages
