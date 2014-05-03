@@ -39,6 +39,10 @@ Supported Languages:
 
 *More languages will be added later.*
 
+You can see actual list of supported languages:
+
+    Kabal.supported_languages
+
 ## Contributing
 
 1. Fork it ( https://github.com/kalashnikovisme/kabal/fork )
