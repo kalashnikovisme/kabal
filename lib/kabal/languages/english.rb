@@ -28,11 +28,10 @@ class Kabal::English < Kabal::Language
   end
 
   def ten_powers(number)
-    if @number_name.nil?
-      @number_name = count_name(number) + " " + names[lang]["ten_powers"][number_order]
-    elsif count(number) != 0
-      @number_name += count_name(number) + " " + names[lang]["ten_powers"][number_order]
-    end
+    less_thousands number if number_is_thousands? number
+    return @number_name if number_is_thousands? number
+    create_number_name number
+    ten_powers number % (10 ** number_order(number))
   end
 
   def number_order(number)
@@ -43,7 +42,24 @@ class Kabal::English < Kabal::Language
     number / (10 ** number_order(number))
   end
 
+  def create_number_name(number)
+    if @number_name.nil?
+      @number_name = count_name(number) + " " + names[lang]["ten_powers"][number_order(number)]
+    elsif count(number) != 0
+      @number_name += count_name(number) + " " + names[lang]["ten_powers"][number_order(number)]
+    end
+  end
+
   def count_name(number)
     three_words count(number)
+  end
+
+  def less_thousands(number)
+    @number_name += " and" if number < 100
+    @number_name += " " + three_words(number % 1000) unless number == 0
+  end
+
+  def number_is_thousands?(number)
+    number_order(number) < 3
   end
 end
