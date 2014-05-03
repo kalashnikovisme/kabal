@@ -25,19 +25,25 @@ Or install it yourself as:
 
 Kabal has one main feature - number to text "converting".
 
-    require 'kabal'
-    include Kabal
-    Kabal.to_text 1 #=> "один"
+    $> require 'kabal'
+    $> include Kabal
+    $> Kabal.to_text 1 #=> "один"
+    $> Kabal.to_text -1000000 #=> "минус один миллион"
 
 You can choose language to "converting".
 
-    Kabal.language = "Russian"
+    $> Kabal.language = "Russian"
+    $> Kabal.current_language #=> "Russian"
 
 Supported Languages:
 
 * Russian
 
 *More languages will be added later.*
+
+You can see actual list of supported languages:
+
+    $> Kabal.supported_languages #=> ["Russian"]
 
 ## Contributing
 
