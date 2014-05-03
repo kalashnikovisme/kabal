@@ -46,7 +46,7 @@ class Kabal::English < Kabal::Language
     if @number_name.nil?
       @number_name = count_name(number) + " " + names[lang]["ten_powers"][number_order(number)]
     elsif count(number) != 0
-      @number_name += count_name(number) + " " + names[lang]["ten_powers"][number_order(number)]
+      @number_name += " " + count_name(number) + " " + names[lang]["ten_powers"][number_order(number)]
     end
   end
 

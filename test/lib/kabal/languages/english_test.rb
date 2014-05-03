@@ -28,4 +28,12 @@ class EnglishTest < TestCase
   def test_thousands_with_and
     assert_equal @eng.convert(11021), "eleven thousand and twenty one"
   end
+
+  def test_hundred_thousands_with_and
+    assert_equal @eng.convert(111021), "one hundred eleven thousand and twenty one"
+  end
+
+  def test_hundred_millions_with_and
+    assert_equal @eng.convert(111150021), "one hundred eleven million one hundred fifty thousand and twenty one"
+  end
 end
