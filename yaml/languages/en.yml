@@ -22,14 +22,14 @@ en:
     18: eighteen
     19: nineteen
   two_words:
-    20: twenty
-    30: thirty
-    40: forty
-    50: fifty
-    60: sixty
-    70: seventy
-    80: eighty
-    90: ninety
+    2: twenty
+    3: thirty
+    4: forty
+    5: fifty
+    6: sixty
+    7: seventy
+    8: eighty
+    9: ninety
   ten_powers:
     2: hundred
     3: thousand
