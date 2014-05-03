@@ -89,3 +89,9 @@ Be careful: BigTest working with 10 001 numbers on one languages during around 3
 Run BigTest
 
     $> tconsole bigtest
+
+Relax!
+
+    $> tconsole all
+    
+runs all tests without Bigtest.
