@@ -31,4 +31,12 @@ class KabalTest < TestCase
     end
     assert_equal NoLanguageSupportError.message, exception.message
   end
+
+  def test_supported_languages
+    assert Kabal.supported_languages
+  end
+
+  def test_current_language
+    assert Kabal.current_language
+  end
 end

@@ -16,7 +16,7 @@ module Kabal
   end
 
   def language=(language_to_set)
-    languages = YAML.load_file('yaml/languages.yml')
+    languages = YamlLoader.yaml_object "languages"
     if languages[language_to_set]
       @language = language_to_set
     else
@@ -25,7 +25,7 @@ module Kabal
   end
 
   def to_text_in_language(number, language_at_once)
-    languages = YAML.load_file('yaml/languages.yml')
+    languages = YamlLoader.yaml_object "languages"
     if languages[language_at_once]
       obj = Object.const_get("Kabal::" + language_at_once).new
       obj.convert number
@@ -36,5 +36,10 @@ module Kabal
 
   def current_language
     @language
+  end
+
+  def supported_languages
+    languages = YamlLoader.yaml_object "languages"
+    languages.keys
   end
 end
