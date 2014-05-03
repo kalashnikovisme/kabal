@@ -41,12 +41,13 @@ You can choose language to "converting".
 Supported Languages:
 
 * Russian
+* English
 
 *More languages will be added later.*
 
 You can see actual list of supported languages:
 
-    $> Kabal.supported_languages #=> ["Russian"]
+    $> Kabal.supported_languages #=> ["Russian", "English"]
 
 ## Contributing
 
@@ -85,3 +86,6 @@ To add Elfin language you should:
 
 Kabal has the BigTest. This test checks the correctness of the operation with all the numbers (0 to 10,000) in all supported languages.
 Be careful: BigTest working with 10 001 numbers on one languages during around 3 minutes.
+Run BigTest
+
+    $> tconsole bigtest
