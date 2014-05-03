@@ -12,4 +12,20 @@ class EnglishTest < TestCase
   def test_two_words
     assert_equal @eng.convert(21), "twenty one"
   end
+
+  def test_three_words
+    assert_equal @eng.convert(121), "one hundred twenty one"
+  end
+
+  def test_three_words_with_and
+    assert_equal @eng.convert(102), "one hundred and two"
+  end
+
+  def test_thousands
+    assert_equal @eng.convert(11121), "eleven thousand one hundred twenty one"
+  end
+
+  def test_thousands_with_and
+    assert_equal @eng.convert(11021), "eleven thousand and twenty one"
+  end
 end
