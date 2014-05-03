@@ -47,7 +47,7 @@ Supported Languages:
 
 You can see actual list of supported languages:
 
-    $> Kabal.supported_languages #=> ["Russian"]
+    $> Kabal.supported_languages #=> ["Russian", "English"]
 
 ## Contributing
 
