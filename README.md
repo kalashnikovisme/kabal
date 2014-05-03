@@ -41,6 +41,7 @@ You can choose language to "converting".
 Supported Languages:
 
 * Russian
+* English
 
 *More languages will be added later.*
 
