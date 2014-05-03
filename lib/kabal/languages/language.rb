@@ -12,5 +12,13 @@ module Kabal
     def minus
       YamlLoader.yaml_object("languages/#{lang}")[lang]["minus"]
     end
+
+    def natural?(number)
+      number % 1 == 0
+    end
+
+    def fractional?(number)
+      number % 1 != 0
+    end
   end
 end
