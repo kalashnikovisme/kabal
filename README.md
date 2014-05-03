@@ -5,6 +5,8 @@
 [![Gem Version](https://badge.fury.io/rb/kabal.svg)](http://badge.fury.io/rb/kabal)
 [![endorse](https://api.coderwall.com/kalashnikovisme/endorsecount.png)](https://coderwall.com/kalashnikovisme)
 [![Dependency Status](https://gemnasium.com/kalashnikovisme/kabal.svg)](https://gemnasium.com/kalashnikovisme/kabal)
+[![Still MainTained](http://stillmaintained.com/kalashnikovisme/kabal.png)](http://stillmaintained.com/kalashnikovisme/kabal)
+
 
 Kabal allows you to translate number into text.
 
