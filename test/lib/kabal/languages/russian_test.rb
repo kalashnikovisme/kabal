@@ -52,6 +52,9 @@ class RussianTest < TestCase
     assert_equal NumberOutRangeError.message, exception.message
   end
   def test_to_text_with_fractional_number
-    assert @rus.convert 1.5
+    assert_equal @rus.convert(1.05), "одна целая пять сотых"
+  end
+  def test_to_text_with_fractional_number
+    assert_equal @rus.convert(1.0), "один"
   end
 end

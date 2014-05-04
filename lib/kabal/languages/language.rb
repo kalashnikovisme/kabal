@@ -13,6 +13,10 @@ module Kabal
       YamlLoader.yaml_object("languages/#{lang}")[lang]["minus"]
     end
 
+    def whole
+      YamlLoader.yaml_object("languages/#{lang}")[lang]["whole"]
+    end
+
     def natural?(number)
       number % 1 == 0
     end

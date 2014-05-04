@@ -1,9 +1,11 @@
 require 'kabal/languages/language'
 require 'kabal/languages/russian/declinations'
 require 'kabal/languages/russian/natural_numbers'
+require 'kabal/languages/russian/fractional_numbers'
 
 class Kabal::Russian < Kabal::Language
-  include Kabal::RussianFunctions::NaturalNumbers
+  include Kabal::RussianRules::NaturalNumbers
+  include Kabal::RussianRules::FractionalNumbers
 
   def convert(number)
     #FIXME find way to get min and max from yml file
@@ -14,11 +16,8 @@ class Kabal::Russian < Kabal::Language
   end
 
   def number_words(number)
-    return natural_number_name number if natural? number
+    return natural_number_name number.round if natural? number
     fractional_number_name number if fractional? number
-  end
-
-  def fractional_number_name(number)
   end
 
   def need_minus?(number)

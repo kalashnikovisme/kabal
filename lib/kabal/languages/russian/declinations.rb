@@ -1,16 +1,19 @@
 module Kabal
-  module RussianFunctions
+  module RussianRules
     module Declinations
-      def self.name_with_declination(ten_power_name, count)
+      def self.name_with_declination(number_name, count)
         #FIXME add gem russian
-        if ten_power_name[-1, 1] == "а"
-          return ten_power_name if ends_with_one? count
-          return ten_power_name[0..4] + "и" if end_with_two_or_three_of_four? count
-          ten_power_name[0..4]
+        if number_name[-1, 1] == "а"
+          return number_name if ends_with_one? count
+          return number_name[0..4] + "и" if end_with_two_or_three_of_four? count
+          number_name[0..4]
+        elsif number_name[-1, 1] == "я"
+          return number_name if ends_with_one? count
+          number_name[0..-3] + "ых"
         else
-          return ten_power_name if ends_with_one? count
-          return ten_power_name + "а" if end_with_two_or_three_of_four? count
-          ten_power_name + "ов"
+          return number_name if ends_with_one? count
+          return number_name + "а" if end_with_two_or_three_of_four? count
+          number_name + "ов"
         end
       end
 

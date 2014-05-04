@@ -1,5 +1,5 @@
 module Kabal
-  module RussianFunctions
+  module RussianRules
     module NaturalNumbers
       def natural_number_name(number)
         #FIXME switch case next lines
@@ -8,10 +8,16 @@ module Kabal
         return three_words(number) if number >= 100 and number <= 999
         ten_powers(number) if number >= 1000
       end
+
+      def feminine_natural_number_name(number)
+        @feminine_name = true
+        natural_number_name number
+      end
+
       def single(number)
-        if @feminine_name_for_thousands
-          @feminine_name_for_thousands = false
-          return names[lang]["single_feminine"][count(number) % 10]
+        if @feminine_name
+          @feminine_name = false
+          return names[lang]["single_feminine"][count(number) % 10] if count(number) % 10 == 1 or count(number) % 10 == 2
         end
         names[lang]["single"][number]
       end
@@ -65,7 +71,7 @@ module Kabal
 
       def count_name(number)
         #FIXME number.to_S[-4] not good
-        @feminine_name_for_thousands = (number.to_s[-4] == "1" or number.to_s[-4] == "2") and count(number) and count(number) / 10 != 1 and number_order(number) == 3
+        @feminine_name = (number.to_s[-4] == "1" or number.to_s[-4] == "2") and count(number) and count(number) / 10 != 1 and number_order(number) == 3
         three_words count(number)
       end
 
