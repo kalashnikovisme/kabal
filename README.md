@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/kalashnikovisme/kabal.svg?branch=master)](https://travis-ci.org/kalashnikovisme/kabal)
 [![Coverage Status](https://coveralls.io/repos/kalashnikovisme/kabal/badge.png?branch=master)](https://coveralls.io/r/kalashnikovisme/kabal?branch=master)
+[![Inline docs](http://inch-pages.github.io/github/kalashnikovisme/kabal.png)](http://inch-pages.github.io/github/kalashnikovisme/kabal)
 [![Gem Version](https://badge.fury.io/rb/kabal.svg)](http://badge.fury.io/rb/kabal)
 [![endorse](https://api.coderwall.com/kalashnikovisme/endorsecount.png)](https://coderwall.com/kalashnikovisme)
 [![Dependency Status](https://gemnasium.com/kalashnikovisme/kabal.svg)](https://gemnasium.com/kalashnikovisme/kabal)
@@ -89,3 +90,9 @@ Be careful: BigTest working with 10 001 numbers on one languages during around 3
 Run BigTest
 
     $> tconsole bigtest
+
+Relax!
+
+    $> tconsole all
+    
+runs all tests without Bigtest.
