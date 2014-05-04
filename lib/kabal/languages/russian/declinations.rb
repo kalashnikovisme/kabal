@@ -3,6 +3,9 @@ module Kabal
     module Declinations
       def self.name_with_declination(number_name, count)
         #FIXME add gem russian
+        if number_name.nil?
+          raise [number_name, count].inspect
+        end
         if number_name[-1, 1] == "а"
           return number_name if ends_with_one? count
           return number_name[0..4] + "и" if end_with_two_or_three_of_four? count
