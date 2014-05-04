@@ -1,0 +1,9 @@
+support:
+  ru:
+    natural:
+      min: "-(10 ** 102)"
+      max: "-(10 ** 102)"
+    fractional:
+      symbols: 16
+  en:
+    natural: true
