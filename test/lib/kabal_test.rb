@@ -39,4 +39,12 @@ class KabalTest < TestCase
   def test_current_language
     assert Kabal.current_language
   end
+
+  def test_current_language_support_natural?
+    assert Kabal.current_language_supports_natural?
+  end
+
+  def test_current_language_support_fractional?
+    assert Kabal.current_language_supports_fractional?
+  end
 end

@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/kalashnikovisme/kabal.svg?branch=master)](https://travis-ci.org/kalashnikovisme/kabal)
 [![Coverage Status](https://coveralls.io/repos/kalashnikovisme/kabal/badge.png?branch=master)](https://coveralls.io/r/kalashnikovisme/kabal?branch=master)
+[![Inline docs](http://inch-pages.github.io/github/kalashnikovisme/kabal.png)](http://inch-pages.github.io/github/kalashnikovisme/kabal)
 [![Gem Version](https://badge.fury.io/rb/kabal.svg)](http://badge.fury.io/rb/kabal)
 [![endorse](https://api.coderwall.com/kalashnikovisme/endorsecount.png)](https://coderwall.com/kalashnikovisme)
 [![Dependency Status](https://gemnasium.com/kalashnikovisme/kabal.svg)](https://gemnasium.com/kalashnikovisme/kabal)
@@ -41,12 +42,17 @@ You can choose language to "converting".
 Supported Languages:
 
 * Russian
+    * Natural Numbers
+    * Fractional Numbers
+    * Negative Numbers
+* English
+    * Natural Numbers
 
 *More languages will be added later.*
 
 You can see actual list of supported languages:
 
-    $> Kabal.supported_languages #=> ["Russian"]
+    $> Kabal.supported_languages #=> ["Russian", "English"]
 
 ## Contributing
 
@@ -61,12 +67,37 @@ You can see actual list of supported languages:
 To add Elfin language you should:
 
 1. Create `lib/kabal/languages/elfin.rb`. You'll describe rules of this language to drawing numbers there.
+    
+    ```ruby
+    require 'kabal/languages/language'
+        
+    class Kabal::Elfin < Kabal::Language
+        def convert(number)
+            #anything you want
+        end
+    end
+    ```
 2. Create `test/lib/kabal/languages/elfin_test.rb`. You'll cover your code by tests there.
 3. Create `yaml/languages/el.yml`. You'll add numbers and words, which they correspond, there.
+
+    ```yaml
+    el:
+      minus: #Minus on Elfin Language#
+    ```
 4. Add `Elfin: "el"` to `yaml/languages.yml`.
-5. Add `require "kabal/languages/elfin"` to `lib/kabal/supported_languages.rb`.
+5. Add `el: natural: min: {min_of_your_realization}" max: {max_of_your_realization} fractional: symbols: {count_of_symbols_after_dot_that_you_realized}` to `yaml/support.yml` 
+6. Add `require "kabal/languages/elfin"` to `lib/kabal/supported_languages.rb`.
 
 ## Testing
 
 Kabal has the BigTest. This test checks the correctness of the operation with all the numbers (0 to 10,000) in all supported languages.
-Be careful: BigTest working with 10 001 numbers on one languages during around 3 minutes.
+Be careful: BigTest now working around 6 minutes.
+Run BigTest
+
+    $> tconsole bigtest
+
+Relax!
+
+    $> tconsole all
+    
+runs all tests without Bigtest.

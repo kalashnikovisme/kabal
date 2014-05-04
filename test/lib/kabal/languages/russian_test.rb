@@ -51,4 +51,19 @@ class RussianTest < TestCase
     end
     assert_equal NumberOutRangeError.message, exception.message
   end
+  def test_to_text_with_fractional_number_with_zero
+    assert_equal @rus.convert(0.01), "ноль целых одна сотая"
+  end
+  def test_to_text_with_fractional_number
+    assert_equal @rus.convert(1.05), "одна целая пять сотых"
+  end
+  def test_to_text_with_fractional_number_like_whole
+    assert_equal @rus.convert(1.0), "один"
+  end
+  def test_to_text_with_fractional_number_with_preword
+    assert_equal @rus.convert(1.0005), "одна целая пять десятитысячных"
+  end
+  def test_to_text_with_fractional_number_with_exp_form
+    assert_equal @rus.convert(1.00000000005), "одна целая пять стомиллиардных"
+  end
 end
