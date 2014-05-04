@@ -6,7 +6,16 @@ module Kabal
       end
 
       def fractional_ten_powers_name(number)
-        names[lang]["fractional_ten_powers"][fractional_number_order number]
+        ten_powers_name = ""
+        if need_pre_word? number
+         ten_powers_name = names[lang]["fractional_pre_words"][fractional_number_order(number) % 3] + names[lang]["fractional_ten_powers"][fractional_number_order(number) - (fractional_number_order(number) % 3)]
+        else
+          ten_powers_name = names[lang]["fractional_ten_powers"][fractional_number_order(number)]
+        end
+      end
+
+      def need_pre_word?(number)
+        fractional_number_order(number) > 3 and fractional_number_order(number) % 3 != 0
       end
 
       def fractional_number_order(number)
