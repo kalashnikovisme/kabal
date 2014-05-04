@@ -10,8 +10,7 @@ module Kabal
   include Config
 
   def to_text(number)
-    @language ||= "Russian"
-    obj = Object.const_get("Kabal::" + @language).new
+    obj = Object.const_get("Kabal::" + current_language).new
     obj.convert number
   end
 
@@ -36,6 +35,7 @@ module Kabal
 
   def current_language
     @language ||= "Russian"
+    @language
   end
 
   def supported_languages
@@ -44,12 +44,12 @@ module Kabal
   end
 
   def current_language_supports_natural?
-    obj = Object.const_get("Kabal::" + @language).new
+    obj = Object.const_get("Kabal::" + current_language).new
     obj.supports_natural?
   end
 
   def current_language_supports_fractional?
-    obj = Object.const_get("Kabal::" + @language).new
+    obj = Object.const_get("Kabal::" + current_language).new
     obj.supports_fractional?
   end
 end
