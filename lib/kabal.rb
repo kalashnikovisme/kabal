@@ -42,4 +42,14 @@ module Kabal
     languages = YamlLoader.yaml_object "languages"
     languages.keys
   end
+
+  def current_language_supports_natural?
+    obj = Object.const_get("Kabal::" + @language).new
+    obj.supports_natural?
+  end
+
+  def current_language_supports_fractional?
+    obj = Object.const_get("Kabal::" + @language).new
+    obj.supports_fractional?
+  end
 end
