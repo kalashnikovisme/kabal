@@ -4,7 +4,9 @@ module Kabal
       def self.name_with_declination(number_name, count)
         #for 5.0e-11 like numbers
         #FIXME find another way to convert number from exp form
-        count = count.to_s.split('.')[0].to_i
+        if count.to_s.include? "e"
+          count = count.to_s.split('.')[0].to_i
+        end
         #FIXME add gem russian
         if number_name[-1, 1] == "а"
           return number_name if ends_with_one? count
