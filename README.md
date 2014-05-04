@@ -42,7 +42,11 @@ You can choose language to "converting".
 Supported Languages:
 
 * Russian
+    * Natural Numbers
+    * Fractional Numbers
+    * Negative Numbers
 * English
+    * Natural Numbers
 
 *More languages will be added later.*
 
@@ -81,12 +85,13 @@ To add Elfin language you should:
       minus: #Minus on Elfin Language#
     ```
 4. Add `Elfin: "el"` to `yaml/languages.yml`.
-5. Add `require "kabal/languages/elfin"` to `lib/kabal/supported_languages.rb`.
+5. Add `el: natural: min: {min_of_your_realization}" max: {max_of_your_realization} fractional: symbols: {count_of_symbols_after_dot_that_you_realized}` to `yaml/support.yml` 
+6. Add `require "kabal/languages/elfin"` to `lib/kabal/supported_languages.rb`.
 
 ## Testing
 
 Kabal has the BigTest. This test checks the correctness of the operation with all the numbers (0 to 10,000) in all supported languages.
-Be careful: BigTest working with 10 001 numbers on one languages during around 3 minutes.
+Be careful: BigTest now working around 6 minutes.
 Run BigTest
 
     $> tconsole bigtest
