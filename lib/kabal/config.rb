@@ -1,3 +1,3 @@
 module Kabal::Config
-  require "kabal/config/yaml_loader.rb"
+  autoload :YamlLoader, "kabal/config/yaml_loader.rb"
 end
