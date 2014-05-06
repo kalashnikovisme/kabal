@@ -10,16 +10,16 @@ module Kabal
         if need_pre_word? number
           ten_powers_name = fractional_pre_word(number) + fractional_order_word(number)
         else
-          ten_powers_name = names[lang]["fractional_ten_powers"][fractional_number_order(number)]
+          ten_powers_name = names["fractional_ten_powers"][fractional_number_order(number)]
         end
       end
 
       def fractional_order_word(number)
-        names[lang]["fractional_ten_powers"][fractional_number_order(number) - (fractional_number_order(number) % 3)]
+        names["fractional_ten_powers"][fractional_number_order(number) - (fractional_number_order(number) % 3)]
       end
 
       def fractional_pre_word(number)
-        names[lang]["fractional_pre_words"][fractional_number_order(number) % 3]
+        names["fractional_pre_words"][fractional_number_order(number) % 3]
       end
 
       def need_pre_word?(number)
@@ -31,12 +31,9 @@ module Kabal
       end
 
       def fractional_part_name(number)
-        feminine_natural_number_name(fractional_order(number)) + " " + Declinations.name_with_declination(fractional_ten_powers_name(number), fractional_part)
-      end
-
-      def fractional_part(number)
         fractional_part = (number % 1).round(fractional_number_order(number))
-        ((fractional_part) * (10 ** fractional_number_order(number))).to_s.split('.')[0].to_i
+        fractional_order = ((fractional_part) * (10 ** fractional_number_order(number))).to_s.split('.')[0].to_i
+        feminine_natural_number_name(fractional_order) + " " + Declinations.name_with_declination(fractional_ten_powers_name(number), fractional_part)
       end
 
       def whole_part_name(number)
