@@ -1,9 +1,6 @@
-require 'kabal/rules/natural_numbers_rules'
-
 module Kabal
   module RussianRules
     module NaturalNumbers
-      include Rules::NaturalNumbersRules
 
       def feminine_natural_number_name(number)
         @feminine_name = true
