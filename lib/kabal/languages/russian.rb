@@ -7,9 +7,7 @@ class Kabal::Russian < Kabal::Language
   include Kabal::RussianRules::NaturalNumbers
   include Kabal::RussianRules::FractionalNumbers
 
-  def convert(number)
-    #FIXME find way to get min and max from yml file
-    raise NumberOutRangeError.message if number <= -(10 ** 102) or number >= 10 ** 102
+  def convert_number(number)
     #FIXME find better way
     @number_name = nil
     need_minus?(number) ? (minus + " " + number_words(-number)) : number_words(number)

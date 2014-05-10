@@ -1,8 +1,7 @@
 require 'kabal/languages/language'
 
 class Kabal::English < Kabal::Language
-  def convert(number)
-    raise NumberOutRangeError.message if number < 0 or number >= 10 ** 12 or number % 1 != 0
+  def convert_number(number)
     return single number if number >= 0 and number <= 19
     return two_words number if number >= 0 and number <= 99
     return three_words number if number >= 100 and number <= 999

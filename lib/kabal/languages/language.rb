@@ -5,6 +5,11 @@ module Kabal
       @supports = YamlLoader.yaml_object("support")["support"][lang]
     end
 
+    def convert(number)
+      check_supports_for number
+      convert_number number
+    end
+
     def lang
       languages = YamlLoader.yaml_object "languages"
       @lang = languages[self.to_s.split(":")[-2]]
@@ -15,6 +20,14 @@ module Kabal
     end
 
     #TODO реализовать метод supports_negative?
+
+    def min_value
+      eval @supports["natural"]["min"]
+    end
+
+    def max_value
+      eval @supports["natural"]["max"]
+    end
 
     def supports_fractional?
       @supports["fractional"]
@@ -43,8 +56,18 @@ module Kabal
       return three_words(number) if number >= 100 and number <= 999
       ten_powers(number) if number >= 1000
     end
+
     def natural?(number)
       number % 1 == 0
+    end
+
+    def check_supports_for(number)
+      if number % 1 != 0 and not supports_fractional?
+        raise NoSupportForFractionalNumberOnCurrentLanguages.message
+      end
+      if number >= max_value or number <= min_value
+        raise NumberOutRangeError.message
+      end
     end
   end
 end
