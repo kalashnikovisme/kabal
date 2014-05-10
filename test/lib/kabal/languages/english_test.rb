@@ -36,4 +36,11 @@ class EnglishTest < TestCase
   def test_hundred_millions_with_and
     assert_equal @eng.convert(111150021), "one hundred eleven million one hundred fifty thousand and twenty one"
   end
+
+  def test_fractional_number
+    exception = assert_raises RuntimeError do
+      @eng.convert 0.1
+    end
+    assert_equal NoSupportForFractionalNumberOnCurrentLanguages.message, exception.message
+  end
 end
