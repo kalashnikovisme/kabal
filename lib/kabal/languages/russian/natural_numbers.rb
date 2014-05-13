@@ -38,14 +38,6 @@ module Kabal
         ten_powers(number % (10 ** number_order(number)))
       end
 
-      def number_order(number)
-        ((number.to_s.length - 1) / 3) * 3
-      end
-
-      def count(number)
-        number / (10 ** number_order(number))
-      end
-
       def create_number_name(number)
         if @number_name.nil?
           @number_name = count_name(number) + " " + Declinations.name_with_declination(names["ten_powers"][number_order(number)], count(number))
@@ -58,19 +50,12 @@ module Kabal
         @number_name += " " + three_words(number % 1000) unless number == 0
       end
 
-      def number_is_thousands?(number)
-        number_order(number) < 3
-      end
-
       def count_name(number)
         #FIXME number.to_S[-4] not good
         @feminine_name = (number.to_s[-4] == "1" or number.to_s[-4] == "2") and count(number) and count(number) / 10 != 1 and number_order(number) == 3
         three_words count(number)
       end
 
-      def number_is_google?(number)
-        count(number) == 10 and number_order(number) == 99
-      end
     end
   end
 end
