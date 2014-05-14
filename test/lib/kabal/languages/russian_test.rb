@@ -66,4 +66,7 @@ class RussianTest < TestCase
   def test_to_text_with_fractional_number_with_exp_form
     assert_equal @rus.convert(1.00000000005), "одна целая пять стомиллиардных"
   end
+  def test_to_text_with_some_number
+    assert_equal @rus.convert(1.23567891), "одна целая двадцать три миллиона пятьсот шестьдесят семь тысяч восемьсот девяносто одна стомиллионная"
+  end
 end
