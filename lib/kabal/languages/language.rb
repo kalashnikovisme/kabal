@@ -49,16 +49,25 @@ module Kabal
       number % 1 != 0
     end
 
-    def natural_number_name(number)
-      #FIXME switch case next lines
-      return single(number) if number >= 0 and number <= 19
-      return two_words(number) if number >= 20 and number <= 99
-      return three_words(number) if number >= 100 and number <= 999
-      ten_powers(number) if number >= 1000
-    end
 
     def natural?(number)
       number % 1 == 0
+    end
+
+    def number_is_thousands?(number)
+      number_order(number) < 3
+    end
+
+    def number_is_google?(number)
+      count(number) == 10 and number_order(number) == 99
+    end
+
+    def number_order(number)
+      ((number.to_s.length - 1) / 3) * 3
+    end
+
+    def count(number)
+      number / (10 ** number_order(number))
     end
 
     def check_supports_for(number)
