@@ -85,7 +85,16 @@ To add Elfin language you should:
       minus: #Minus on Elfin Language#
     ```
 4. Add `Elfin: "el"` to `yaml/languages.yml`.
-5. Add `el: natural: min: {min_of_your_realization}" max: {max_of_your_realization} fractional: symbols: {count_of_symbols_after_dot_that_you_realized}` to `yaml/support.yml` 
+5. Add to `yaml/support.yml` 
+
+    ```yaml
+    el: 
+      natural: 
+        min: {min_of_your_realization}
+        max: {max_of_your_realization} 
+      fractional: 
+        symbols: {count_of_symbols_after_dot_that_you_realized}
+    ```
 6. Add `require "kabal/languages/elfin"` to `lib/kabal/supported_languages.rb`.
 
 ## Testing
