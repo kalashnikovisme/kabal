@@ -4,10 +4,11 @@ module Kabal
 
       def feminine_natural_number_name(number, fractional_part = false)
         @number = number
+        @feminine_name = !fractional_part
         @fractional_part = fractional_part
-        @feminine_name = true
         natural_number_name number
       end
+
       def natural_number_name(number)
         #FIXME switch case next lines
         return single(number, true) if number >= 0 and number <= 19
@@ -31,7 +32,7 @@ module Kabal
       def two_words(number, this_is_end = false)
         return single(number, this_is_end) if number <= 19
         number_name = names["two_words"][number / 10]
-        number_name += " " + single(number % 10) if (number % 10 != 0)
+        number_name += " " + single(number % 10, this_is_end) if (number % 10 != 0)
         number_name
       end
 
