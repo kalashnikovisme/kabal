@@ -1,7 +1,6 @@
 module Kabal
   module RussianRules
     module NaturalNumbers
-
       def feminine_natural_number_name(number, fractional_part = false)
         @number = number
         @feminine_name = !fractional_part
