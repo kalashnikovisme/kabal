@@ -69,7 +69,4 @@ class RussianTest < TestCase
   def test_to_text_with_some_number
     assert_equal @rus.convert(1.23567891), "одна целая двадцать три миллиона пятьсот шестьдесят семь тысяч восемьсот девяносто одна стомиллионная"
   end
-  def test_to_text_google_naturals_five_tens
-    assert_equal @rus.convert(10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000.5), "гугол целых пять десятых"
-  end
 end
