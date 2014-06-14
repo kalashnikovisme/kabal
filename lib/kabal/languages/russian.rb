@@ -10,7 +10,11 @@ class Kabal::Russian < Kabal::Language
   def convert_number(number)
     #FIXME find better way
     @number_name = nil
-    need_minus?(number) ? (minus + " " + number_words(-number)) : number_words(number)
+    if need_minus? number
+      minus + " " + number_words(-number)
+    else
+      number_words number
+    end
   end
 
   def number_words(number)

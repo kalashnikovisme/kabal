@@ -1,8 +1,8 @@
 module Kabal
   class Language
     def initialize
-      @names = YamlLoader.yaml_object "languages/#{lang}"
-      @supports = YamlLoader.yaml_object("support")["support"][lang]
+      @names = Kabal::Config::YamlLoader.yaml_object "languages/#{lang}"
+      @supports = Kabal::Config::YamlLoader.yaml_object("support")["support"][lang]
     end
 
     def convert(number)
@@ -11,7 +11,7 @@ module Kabal
     end
 
     def lang
-      languages = YamlLoader.yaml_object "languages"
+      languages = Kabal::Config::YamlLoader.yaml_object "languages"
       @lang = languages[self.to_s.split(":")[-2]]
     end
 
