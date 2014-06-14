@@ -69,4 +69,7 @@ class RussianTest < TestCase
   def test_to_text_with_some_number
     assert_equal @rus.convert(1.23567891), "одна целая двадцать три миллиона пятьсот шестьдесят семь тысяч восемьсот девяносто одна стомиллионная"
   end
+  def test_to_text_with_number_from_random
+    assert @rus.convert(8907085629790866538813847602612733677266862921600074745542599600440589977787608558476289530408659232)
+  end
 end
