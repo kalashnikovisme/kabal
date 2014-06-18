@@ -8,4 +8,4 @@ support:
   en:
     natural:
       min: "0"
-      max: "10 ** 12"
+      max: "(10 ** 66) - 1"

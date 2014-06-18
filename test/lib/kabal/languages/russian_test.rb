@@ -76,8 +76,7 @@ class RussianTest < TestCase
     r = Random.new
     (1..100).each do |power|
       number = r.rand(10 ** power)
-      puts number
-      assert @rus.to_text(number)
+      assert @rus.convert(number), number
     end
   end
 end
