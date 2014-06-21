@@ -72,10 +72,10 @@ module Kabal
 
     def check_supports_for(number)
       if number % 1 != 0 and not supports_fractional?
-        raise NoSupportForFractionalNumberOnCurrentLanguages.message
+        raise Kabal::Errors::NoSupportForFractionalNumberOnCurrentLanguages.message
       end
       if number >= max_value or number <= min_value
-        raise NumberOutRangeError.message
+        raise Kabal::Errors::NumberOutRangeError.message
       end
     end
   end
