@@ -42,11 +42,11 @@ You can choose language to "converting".
 Supported Languages:
 
 * Russian
-    * Natural Numbers
+    * Natural Numbers { max: 10 ** 100 }
     * Fractional Numbers
     * Negative Numbers
 * English
-    * Natural Numbers
+    * Natural Numbers { max 10 ** 63 }
 
 *More languages will be added later.*
 
