@@ -33,6 +33,16 @@ module Kabal
     end
   end
 
+  def to_text_in_language_by_index(number, language_at_once_index)
+    languages = Kabal::Config::YamlLoader.yaml_object("languages").to_a
+    if languages[language_at_once_index]
+      obj = Object.const_get("Kabal::" + languages[language_at_once_index].first).new
+      obj.convert number
+    else
+      raise NoLanguageSupportError.message
+    end
+  end
+
   def current_language
     @language ||= "Russian"
     @language
