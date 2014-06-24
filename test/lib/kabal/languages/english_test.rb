@@ -45,7 +45,7 @@ class EnglishTest < TestCase
   end
   def test_hundred_random_numbers
     r = Random.new
-    (1..65).each do |power|
+    (1..63).each do |power|
       number = r.rand(10 ** power)
       assert @eng.convert(number), number
     end
