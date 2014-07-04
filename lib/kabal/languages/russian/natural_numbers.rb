@@ -44,7 +44,6 @@ module Kabal
       end
 
       def ten_powers(number)
-        #FIXME find better way
         return names["ten_powers"][100] if number_is_google? number
         less_thousands number if number_is_thousands? number
         return @number_name if number_is_thousands? number
@@ -65,8 +64,11 @@ module Kabal
       end
 
       def count_name(number)
-        #FIXME number.to_S[-4] not good
-        @feminine_name = (number.to_s[-4] == "1" or number.to_s[-4] == "2") and count(number) and count(number) / 10 != 1 and number_order(number) == 3
+        if (number.to_s[-4] == "1" or number.to_s[-4] == "2") and count(number) and (count(number) % 100) / 10 != 1 and number_order(number) == 3
+          @feminine_name = true
+        else
+          @feminine_name = false
+        end
         three_words count(number)
       end
 
