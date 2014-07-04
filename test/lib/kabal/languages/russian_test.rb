@@ -79,4 +79,7 @@ class RussianTest < TestCase
       assert @rus.convert(number), number
     end
   end
+  def test_11000
+    assert_equal @rus.convert(11000), "одиннадцать тысяч"
+  end
 end
