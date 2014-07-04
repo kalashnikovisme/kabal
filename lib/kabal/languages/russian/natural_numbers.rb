@@ -64,7 +64,7 @@ module Kabal
       end
 
       def count_name(number)
-        if (number.to_s[-4] == "1" or number.to_s[-4] == "2") and count(number) and count(number) / 10 != 1 and number_order(number) == 3
+        if (number.to_s[-4] == "1" or number.to_s[-4] == "2") and count(number) and (count(number) % 100) / 10 != 1 and number_order(number) == 3
           @feminine_name = true
         else
           @feminine_name = false

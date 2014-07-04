@@ -23,7 +23,7 @@ module Kabal
       end
 
       def self.ends_with_one?(count)
-        count.to_s[-1] == "1" and count / 10 != 1
+        count.to_s[-1] == "1" and (count % 100) / 10 != 1
       end
 
       def self.end_with_two_or_three_of_four?(count)
