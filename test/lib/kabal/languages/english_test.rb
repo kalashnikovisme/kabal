@@ -38,10 +38,7 @@ class EnglishTest < TestCase
   end
 
   def test_fractional_number
-    exception = assert_raises RuntimeError do
-      @eng.convert 0.1
-    end
-    assert_equal NoSupportForFractionalNumberOnCurrentLanguages.message, exception.message
+    assert_equal NoSupportForFractionalNumberOnCurrentLanguages.message, @eng.convert(0.1)
   end
   def test_hundred_random_numbers
     r = Random.new

@@ -6,8 +6,20 @@ module Kabal
     end
 
     def convert(number)
-      check_supports_for number
-      convert_number number
+      if no_supports? number
+        error number
+      else
+        convert_number number
+      end
+    end
+
+    def error(number)
+      if number_is_out_of_the_range? number
+        return Kabal::Errors::NumberOutRangeError.message
+      end
+      if not supports_fractional? and number % 1 != 0
+        Kabal::Errors::NoSupportForFractionalNumberOnCurrentLanguages.message
+      end
     end
 
     def lang
@@ -27,10 +39,6 @@ module Kabal
 
     def max_value
       eval @supports["natural"]["max"]
-    end
-
-    def supports_fractional?
-      @supports["fractional"]
     end
 
     def names
@@ -70,13 +78,16 @@ module Kabal
       number / (10 ** number_order(number))
     end
 
-    def check_supports_for(number)
-      if number % 1 != 0 and not supports_fractional?
-        raise Kabal::Errors::NoSupportForFractionalNumberOnCurrentLanguages.message
-      end
-      if number >= max_value or number <= min_value
-        raise Kabal::Errors::NumberOutRangeError.message
-      end
+    def supports_fractional?
+      @supports["fractional"]
+    end
+
+    def number_is_out_of_the_range?(number)
+      number >= max_value or number <= min_value
+    end
+
+    def no_supports?(number)
+      (number % 1 != 0 and not supports_fractional?) or number_is_out_of_the_range?(number)
     end
   end
 end

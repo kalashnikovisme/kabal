@@ -46,10 +46,7 @@ class RussianTest < TestCase
     assert_equal @rus.convert(-22000), "минус двадцать две тысячи"
   end
   def test_to_text_with_negative_number
-    exception = assert_raises RuntimeError do
-      @rus.convert -(10 ** 103)
-    end
-    assert_equal NumberOutRangeError.message, exception.message
+    assert_equal NumberOutRangeError.message, @rus.convert(-(10 ** 103))
   end
   def test_to_text_with_fractional_number_with_zero
     assert_equal @rus.convert(0.01), "ноль целых одна сотая"
