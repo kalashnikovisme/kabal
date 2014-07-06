@@ -29,7 +29,7 @@ module Kabal
       obj = Object.const_get("Kabal::" + language_at_once).new
       obj.convert number
     else
-      raise NoLanguageSupportError.message
+      NoLanguageSupportError.message
     end
   end
 
@@ -39,7 +39,7 @@ module Kabal
       obj = Object.const_get("Kabal::" + languages[language_at_once_index].first).new
       obj.convert number
     else
-      raise NoLanguageSupportError.message
+      NoLanguageSupportError.message
     end
   end
 
