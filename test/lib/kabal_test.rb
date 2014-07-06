@@ -21,15 +21,10 @@ class KabalTest < TestCase
   end
 
   def test_to_text_in_language_with_unsupported_language
-    #FIXME replace RuntimeError to NoLanguageSupportError
-    exception = assert_raises RuntimeError do
-      Kabal.to_text_in_language(125125125125, "Elfin")
-    end
-    assert_equal NoLanguageSupportError.message, exception.message
+    assert_equal NoLanguageSupportError.message, Kabal.to_text_in_language(125125125125, "Elfin")
   end
 
   def test_language_init_with_unsupported_language
-    #FIXME replace RuntimeError to NoLanguageSupportError
     exception = assert_raises RuntimeError do
       Kabal.language = "Elfin"
     end
