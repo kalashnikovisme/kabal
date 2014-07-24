@@ -47,4 +47,10 @@ class EnglishTest < TestCase
       assert @eng.convert(number), number
     end
   end
+  def test_minus_one
+    assert_equal "minus one", @eng.convert(-1)
+  end
+  def test_minus_one_million_and_one_and_one_and_one
+    assert_equal "minus one hundred eleven million one hundred fifty thousand and twenty one", @eng.convert(-111150021)
+  end
 end

@@ -21,8 +21,4 @@ class Kabal::Russian < Kabal::Language
     return natural_number_name number.round if natural? number
     fractional_number_name number if fractional? number
   end
-
-  def need_minus?(number)
-    number < 0
-  end
 end

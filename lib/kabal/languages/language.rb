@@ -89,5 +89,9 @@ module Kabal
     def no_supports?(number)
       (number % 1 != 0 and not supports_fractional?) or number_is_out_of_the_range?(number)
     end
+
+    def need_minus?(number)
+      number < 0
+    end
   end
 end
