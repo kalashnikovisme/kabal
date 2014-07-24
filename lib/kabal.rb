@@ -63,6 +63,16 @@ module Kabal
     obj.supports_fractional?
   end
 
+  def language_supports_negative?(language)
+    obj = Object.const_get("Kabal::" + language).new
+    obj.supports_negative?
+  end
+
+  def language_supports_fractional?(language)
+    obj = Object.const_get("Kabal::" + language).new
+    obj.supports_fractional?
+  end
+
   def maximum_for(language)
     obj = Object.const_get("Kabal::" + language).new
     obj.max_value
