@@ -2,6 +2,13 @@ require 'kabal/languages/language'
 
 class Kabal::English < Kabal::Language
   def convert_number(number)
+    if need_minus? number
+      minus + " " + number_words(-number)
+    else
+      number_words number
+    end
+  end
+  def number_words(number)
     return single number if number >= 0 and number <= 19
     return two_words number if number >= 0 and number <= 99
     return three_words number if number >= 100 and number <= 999
