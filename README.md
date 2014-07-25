@@ -52,9 +52,17 @@ Supported Languages:
 
 *More languages will be added later.*
 
-You can see actual list of supported languages:
+Some interfaces:
 
     $> Kabal.supported_languages #=> ["Russian", "English"]
+    $> Kabal.to_text_in_language(1, "English") #=> "one"
+    $> Kabal.to_text_in_language_by_index(1, 0) #=> "один"
+    $> Kabal.current_language_supports_natural? #=> true
+    $> Kabal.current_language_supports_fractional? #=> true
+    $> Kabal.language_supports_negative? #=> true
+    $> Kabal.language_supports_fractional? #= true
+    $> Kabal.maximum_for "Russian" #=> 1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+    $> Kabal.minimum_for "English" #=> -999999999999999999999999999999999999999999999999999999999999999999
 
 ## Contributing
 
