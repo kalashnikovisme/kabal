@@ -19,7 +19,7 @@ module Kabal
         count_string = number.to_s.split('.')[1]
         count = count_string.to_i
         if count_string.size != count.to_s.size
-          (count.to_s.size..count_string.size - 1).each do
+          (count_string.size - count.to_s.size).times do
             name += names["single"][0] + " "
           end
           name + natural_number_name(count)

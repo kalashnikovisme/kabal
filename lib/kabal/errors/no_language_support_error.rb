@@ -1,9 +1,9 @@
+require "kabal/errors/error"
+
 module Kabal
   module Errors
-    class NoLanguageSupportError < StandardError
-      def self.message
-        "There is no support of such language yet"
-      end
+    class NoLanguageSupportError < Error
+      @code = 2
     end
   end
 end
