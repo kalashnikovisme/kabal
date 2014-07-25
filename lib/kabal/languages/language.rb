@@ -31,7 +31,9 @@ module Kabal
       @supports["natural"]
     end
 
-    #TODO реализовать метод supports_negative?
+    def supports_negative?
+      min_value < 0
+    end
 
     def min_value
       eval @supports["natural"]["min"]
