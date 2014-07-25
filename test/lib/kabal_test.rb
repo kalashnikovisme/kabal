@@ -57,7 +57,15 @@ class KabalTest < TestCase
   end
 
   def test_minimum_for_language
-    assert Kabal.maximum_for("Russian"), -(10 ** 102)
-    assert Kabal.maximum_for("English"), 0
+    assert Kabal.minimum_for("Russian"), -(10 ** 102)
+    assert Kabal.minimum_for("English"), 0
+  end
+
+  def test_language_supports_negative
+    assert Kabal.language_supports_negative? "Russian"
+  end
+
+  def test_language_supports_fractional
+    assert Kabal.language_supports_fractional? "English"
   end
 end
