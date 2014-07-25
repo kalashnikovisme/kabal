@@ -53,10 +53,13 @@ module Kabal
       names["whole"]
     end
 
+    def dot
+      names["dot"]
+    end
+
     def fractional?(number)
       number % 1 != 0
     end
-
 
     def natural?(number)
       number % 1 == 0
