@@ -6,35 +6,35 @@ class EnglishTest < TestCase
   end
 
   def test_single_number
-    assert_equal @eng.convert(1), "one"
+    assert_equal "one", @eng.convert(1)
   end
 
   def test_two_words
-    assert_equal @eng.convert(21), "twenty one"
+    assert_equal "twenty one", @eng.convert(21)
   end
 
   def test_three_words
-    assert_equal @eng.convert(121), "one hundred twenty one"
+    assert_equal "one hundred twenty one", @eng.convert(121)
   end
 
   def test_three_words_with_and
-    assert_equal @eng.convert(102), "one hundred and two"
+    assert_equal "one hundred and two", @eng.convert(102)
   end
 
   def test_thousands
-    assert_equal @eng.convert(11121), "eleven thousand one hundred twenty one"
+    assert_equal "eleven thousand one hundred twenty one", @eng.convert(11121)
   end
 
   def test_thousands_with_and
-    assert_equal @eng.convert(11021), "eleven thousand and twenty one"
+    assert_equal "eleven thousand and twenty one", @eng.convert(11021)
   end
 
   def test_hundred_thousands_with_and
-    assert_equal @eng.convert(111021), "one hundred eleven thousand and twenty one"
+    assert_equal "one hundred eleven thousand and twenty one", @eng.convert(111021)
   end
 
   def test_hundred_millions_with_and
-    assert_equal @eng.convert(111150021), "one hundred eleven million one hundred fifty thousand and twenty one"
+    assert_equal "one hundred eleven million one hundred fifty thousand and twenty one", @eng.convert(111150021)
   end
   def test_hundred_random_numbers
     r = Random.new
