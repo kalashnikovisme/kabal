@@ -72,4 +72,7 @@ class EnglishTest < TestCase
     assert_equal "one point zero zero zero zero zero zero zero five", @eng.convert(1.00000005)
     assert_equal "minus one point zero zero zero zero zero zero zero five", @eng.convert(-1.00000005)
   end
+  def test_big_number
+    assert_equal "forty seven novemdecillion twenty six octodecillion one hundred fifty seven septendecillion eight hundred twenty five sexdecillion six hundred twenty seven quindecillion nine hundred eighty quattuordecillion seven hundred thirty three tredecillion four hundred thirty nine duodecillion two hundred twenty five undecillion eight hundred twenty three decillion three hundred fifty three nonillion twenty nine octillion six hundred fifty seven septillion seven hundred forty five sextillion five hundred forty four quintillion six hundred forty six quadrillion seven hundred sixty one trillion eight hundred ninety billion seventy four million two hundred forty four thousand and three", @eng.convert(47026157825627980733439225823353029657745544646761890074244003)
+  end
 end
