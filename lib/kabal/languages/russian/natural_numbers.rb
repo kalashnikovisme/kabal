@@ -71,10 +71,6 @@ module Kabal
         end
         three_words count(number)
       end
-
-      def is_number_ten_powers?
-        @number <= -1000 and @number >= 1000
-      end
     end
   end
 end
