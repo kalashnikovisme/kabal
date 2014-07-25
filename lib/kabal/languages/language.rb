@@ -61,7 +61,6 @@ module Kabal
       number % 1 != 0
     end
 
-
     def natural?(number)
       number % 1 == 0
     end

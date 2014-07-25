@@ -64,4 +64,8 @@ class EnglishTest < TestCase
     assert_equal "point one", @eng.convert(0.1)
     assert_equal "minus point one", @eng.convert(-0.1)
   end
+  def test_one_point_zero_five
+    assert_equal "one point zero five", @eng.convert(1.05)
+    assert_equal "minus one point zero five", @eng.convert(-1.05)
+  end
 end
