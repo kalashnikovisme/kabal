@@ -36,10 +36,6 @@ class EnglishTest < TestCase
   def test_hundred_millions_with_and
     assert_equal @eng.convert(111150021), "one hundred eleven million one hundred fifty thousand and twenty one"
   end
-
-  def test_fractional_number
-    assert_equal NoSupportForFractionalNumberOnCurrentLanguages.message, @eng.convert(0.1)
-  end
   def test_hundred_random_numbers
     r = Random.new
     (1..63).each do |power|
@@ -55,5 +51,17 @@ class EnglishTest < TestCase
   end
   def test_minus_one_hundred_fifty
     assert_equal "minus one hundred fifty", @eng.convert(-150)
+  end
+  def test_1_point_5
+    assert_equal "one point five", @eng.convert(1.5)
+    assert_equal "minus one point five", @eng.convert(-1.5)
+  end
+  def test_125_point_125
+    assert_equal "one hundred twenty five point one hundred twenty five", @eng.convert(125.125)
+    assert_equal "minus one hundred twenty five point one hundred twenty five", @eng.convert(-125.125)
+  end
+  def test_zero_point_one
+    assert_equal "point one", @eng.convert(0.1)
+    assert_equal "minus point one", @eng.convert(-0.1)
   end
 end
