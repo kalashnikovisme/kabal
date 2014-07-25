@@ -47,6 +47,7 @@ Supported Languages:
     * Negative Numbers
 * English
     * Natural Numbers { max 10 ** 63 }
+    * Fractional Numbers
     * Negative Numbers
 
 *More languages will be added later.*
