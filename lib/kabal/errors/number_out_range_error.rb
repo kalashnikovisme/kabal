@@ -1,9 +1,9 @@
+require "kabal/errors/error"
+
 module Kabal
   module Errors
-    class NumberOutRangeError < StandardError
-      def self.message
-        "Number is out of the range for current language"
-      end
+    class NumberOutRangeError < Error
+      @code = 1
     end
   end
 end
