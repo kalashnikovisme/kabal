@@ -68,4 +68,8 @@ class KabalTest < TestCase
   def test_language_supports_fractional
     assert Kabal.language_supports_fractional? "English"
   end
+
+  def test_big_number
+    assert_equal NumberOutRangeError.message, Kabal.to_text_in_language(10000000000000000000000000000000000000, "Deutsch")
+  end
 end
