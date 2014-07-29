@@ -17,6 +17,14 @@ class EnglishTest < TestCase
     assert_equal "one hundred", @eng.convert(100)
   end
 
+  def test_one_thousand
+    assert_equal "one thousand", @eng.convert(1000)
+  end
+
+  def test_one_million
+    assert_equal "one million", @eng.convert(1000000)
+  end
+
   def test_three_words
     assert_equal "one hundred twenty one", @eng.convert(121)
   end
