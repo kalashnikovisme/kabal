@@ -2,7 +2,7 @@ de:
   and: "und"
   minus: "minus"
   single:
-    0: null
+    0: "null"
     1: eins
     2: zwei
     3: drei

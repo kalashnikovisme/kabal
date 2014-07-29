@@ -5,6 +5,11 @@ class RussianTest < TestCase
     @rus = Kabal::Russian.new
   end
 
+  def test_zero_number
+    assert_equal "ноль", @rus.convert(0)
+    assert_equal "ноль", @rus.convert(-0)
+  end
+
   def test_to_text_with_single_number
     assert_equal "один", @rus.convert(1)
     assert_equal "минус один", @rus.convert(-1)
