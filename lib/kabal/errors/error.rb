@@ -1,3 +1,5 @@
+require "kabal/config"
+
 module Kabal
   module Errors
     class Error < StandardError
@@ -5,7 +7,7 @@ module Kabal
       @code = "Unknown error code"
 
       def self.message
-        errors = YamlLoader.yaml_object "errors"
+        errors = Kabal::Config::YamlLoader.yaml_object "errors"
         errors["errors"]["messages"][@code]
       end
     end

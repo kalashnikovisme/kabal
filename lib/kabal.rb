@@ -6,8 +6,8 @@ require 'yaml'
 
 module Kabal
   include SupportedLanguages
-  include Errors
   include Config
+  include Errors
 
   def to_text(number)
     to_text_in_language number, current_language
