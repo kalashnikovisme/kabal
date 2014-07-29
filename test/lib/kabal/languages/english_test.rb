@@ -5,6 +5,11 @@ class EnglishTest < TestCase
     @eng = Kabal::English.new
   end
 
+  def test_zero_number
+    assert_equal "zero", @eng.convert(0)
+    assert_equal "zero", @eng.convert(-0)
+  end
+
   def test_single_number
     assert_equal "one", @eng.convert(1)
   end
