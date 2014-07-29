@@ -13,6 +13,10 @@ class EnglishTest < TestCase
     assert_equal "twenty one", @eng.convert(21)
   end
 
+  def test_one_hundred
+    assert_equal "one hundred", @eng.convert(100)
+  end
+
   def test_three_words
     assert_equal "one hundred twenty one", @eng.convert(121)
   end

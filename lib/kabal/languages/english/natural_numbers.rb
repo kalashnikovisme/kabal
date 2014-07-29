@@ -21,8 +21,8 @@ module Kabal
       def three_words(number)
         return two_words number if number <= 99
         number_name = single(number / 100) + " " + names["ten_powers"][2]
-        number_name += " " + two_words(number % 100) if (number % 100 >= 10)
-        number_name += " and " + single(number % 100) if (number % 100 < 10)
+        number_name += " " + two_words(number % 100) if number % 100 >= 10
+        number_name += " and " + single(number % 100) if number % 100 < 10 and number % 100 != 0
         number_name
       end
 
