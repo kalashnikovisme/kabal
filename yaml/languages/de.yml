@@ -1,0 +1,32 @@
+de:
+  and: "und"
+  single:
+    0: null
+    1: eins
+    2: zwei
+    3: drei
+    4: vier
+    5: fünf
+    6: sechs
+    7: sieben
+    8: acht
+    9: neun
+    10: zehn
+    11: elf
+    12: zwölf
+    13: dreizehn
+    14: vierzehn
+    15: fünfzehn
+    16: sechzehn
+    17: siebzehn
+    18: achtzehn
+    19: neunzehn
+  two_words:
+    2: zwanzig
+    3: dreißig
+    4: vierzig
+    5: fünfzig
+    6: sechzig
+    7: siebzig
+    8: achtzig
+    9: neunzig

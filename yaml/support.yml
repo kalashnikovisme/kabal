@@ -11,3 +11,7 @@ support:
       max: "(10 ** 66) - 1"
     fractional:
       symbols: 16
+  de:
+    natural:
+      min: "0"
+      max: "99"
