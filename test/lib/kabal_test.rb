@@ -21,7 +21,7 @@ class KabalTest < TestCase
   end
 
   def test_to_text_in_language_by_index_with_unsupport_language
-    assert_equal NoLanguageSupportError.message, Kabal.to_text_in_language_by_index(125125125125, 2)
+    assert_equal NoLanguageSupportError.message, Kabal.to_text_in_language_by_index(125125125125, 3)
   end
 
   def test_to_text_in_language_with_unsupported_language
