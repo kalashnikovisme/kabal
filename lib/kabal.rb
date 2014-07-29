@@ -10,8 +10,7 @@ module Kabal
   include Config
 
   def to_text(number)
-    obj = Object.const_get("Kabal::" + current_language).new
-    obj.convert number
+    to_text_in_language number, current_language
   end
 
   def language=(language_to_set)
@@ -26,8 +25,12 @@ module Kabal
   def to_text_in_language(number, language_at_once)
     languages = Kabal::Config::YamlLoader.yaml_object "languages"
     if languages[language_at_once]
-      obj = Object.const_get("Kabal::" + language_at_once).new
-      obj.convert number
+      if number > maximum_for(language_at_once) or number < minimum_for(language_at_once)
+        NumberOutRangeError.message
+      else
+        obj = Object.const_get("Kabal::" + language_at_once).new
+        obj.convert number
+      end
     else
       NoLanguageSupportError.message
     end
