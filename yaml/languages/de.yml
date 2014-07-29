@@ -1,0 +1,42 @@
+de:
+  and: "und"
+  minus: "minus"
+  single:
+    0: null
+    1: eins
+    2: zwei
+    3: drei
+    4: vier
+    5: fünf
+    6: sechs
+    7: sieben
+    8: acht
+    9: neun
+    10: zehn
+    11: elf
+    12: zwölf
+    13: dreizehn
+    14: vierzehn
+    15: fünfzehn
+    16: sechzehn
+    17: siebzehn
+    18: achtzehn
+    19: neunzehn
+  two_words:
+    2: zwanzig
+    3: dreißig
+    4: vierzig
+    5: fünfzig
+    6: sechzig
+    7: siebzig
+    8: achtzig
+    9: neunzig
+  ten_powers:
+    2: hundert
+    3: tausend
+    6: Million
+    9: Milliarde
+    12: Billion
+    15: Billiarde
+    18: Trillion
+    21: Trilliarde
