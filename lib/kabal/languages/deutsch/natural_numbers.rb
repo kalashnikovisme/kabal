@@ -8,23 +8,28 @@ module Kabal
         ten_powers number if number >= 100
       end
       def single(number)
-        names["single"][number]
+        unless @ein
+          names["single"][number]
+        else
+          @ein = false
+          names["single"][number].chop
+        end
       end
 
       def two_words(number)
         return single number if number <= 19
         number_name = names["two_words"][number / 10]
-        single_number_name = single(number % 10)
-        single_number_name.chop! if number % 10 == 1
+        @ein = (number % 10 == 1)
         number_name = single(number % 10) + names["and"] + number_name if (number % 10 != 0)
         number_name
       end
 
       def three_words(number)
         return two_words number if number <= 99
-        number_name = single(number / 100) + " " + names["ten_powers"][2]
-        number_name += " " + two_words(number % 100) if (number % 100 >= 10)
-        number_name += " and " + single(number % 100) if (number % 100 < 10)
+        @ein = (number / 100 == 1)
+        number_name = single(number / 100) + names["ten_powers"][2]
+        number_name += two_words(number % 100) if (number % 100 >= 10)
+        number_name += single(number % 100) if number % 100 < 10 and number % 100 != 0
         number_name
       end
 
@@ -37,9 +42,9 @@ module Kabal
 
       def create_number_name(number)
         if @number_name.nil?
-          @number_name = count_name(number) + " " + names["ten_powers"][number_order(number)]
+          @number_name = words_to_add(number)
         elsif count(number) != 0
-          @number_name += " " + count_name(number) + " " + names["ten_powers"][number_order(number)]
+          @number_name += words_to_add(number)
         end
       end
 
@@ -48,8 +53,20 @@ module Kabal
       end
 
       def less_thousands(number)
-        @number_name += " and" if number < 100
-        @number_name += " " + three_words(number % 1000) unless number == 0
+        return if number == 0
+        @number_name += three_words(number % 1000) unless number == 0
+      end
+
+      def millions_or_greater?(number)
+        number_order(number) > 3
+      end
+
+      def words_to_add(number)
+        if millions_or_greater?(number)
+          @number_name = count_name(number) + " " + Declinations.name_with_declination(names["ten_powers"][number_order(number)], count(number)) + " "
+        else
+          @number_name = count_name(number) + Declinations.name_with_declination(names["ten_powers"][number_order(number)], count(number))
+        end
       end
     end
   end
