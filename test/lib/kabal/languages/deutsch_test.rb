@@ -61,4 +61,24 @@ class DeutschTest < TestCase
   def test_minus_one_hundred_fifty
     assert_equal "minus einhundertfünfzig", @deu.convert(-150)
   end
+  def test_1_point_5
+    assert_equal "eins Komma fünf", @deu.convert(1.5)
+    assert_equal "minus eins Komma fünf", @deu.convert(-1.5)
+  end
+  def test_125_point_125
+    assert_equal "einhundertfünfundzwanzig Komma einhundertfünfundzwanzig", @deu.convert(125.125)
+    assert_equal "minus einhundertfünfundzwanzig Komma einhundertfünfundzwanzig", @deu.convert(-125.125)
+  end
+  def test_zero_point_one
+    assert_equal "null Komma eins", @deu.convert(0.1)
+    assert_equal "minus null Komma eins", @deu.convert(-0.1)
+  end
+  def test_one_point_zero_five
+    assert_equal "eins Komma null fünf", @deu.convert(1.05)
+    assert_equal "minus eins Komma null fünf", @deu.convert(-1.05)
+  end
+  def test_one_point_zero_zero_zero_zero_zero_zero_zero_five
+    assert_equal "eins Komma null null null null null null null fünf", @deu.convert(1.00000005)
+    assert_equal "minus eins Komma null null null null null null null fünf", @deu.convert(-1.00000005)
+  end
 end
