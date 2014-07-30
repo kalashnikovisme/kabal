@@ -12,7 +12,7 @@ module Kabal
       end
 
       def whole_part_name(number)
-        count = number.to_s.split('.')[0].to_i
+        count = number.floor
         feminine_natural_number_name(count) + " " + Declinations.name_with_declination(whole, count)
       end
 
@@ -38,9 +38,14 @@ module Kabal
       end
 
       def fractional_number_order(number)
-        number.to_s.split('.')[1].length
+        #FIXME find better way with whole 0 numbers
+        number_string = number.to_s
+        if number_string.include? "-"
+          number_string.split('-')[1].to_i
+        else
+          number_string.split('.')[1].length
+        end
       end
-
     end
   end
 end

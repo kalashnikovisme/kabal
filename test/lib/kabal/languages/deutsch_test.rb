@@ -81,4 +81,8 @@ class DeutschTest < TestCase
     assert_equal "eins Komma null null null null null null null fünf", @deu.convert(1.00000005)
     assert_equal "minus eins Komma null null null null null null null fünf", @deu.convert(-1.00000005)
   end
+  def test_zero_point_zero_zero_zero_zero_zero_zero_zero_five
+    assert_equal "null Komma null null null null null null null fünf", @deu.convert(0.00000005)
+    assert_equal "minus null Komma null null null null null null null fünf", @deu.convert(-0.00000005)
+  end
 end
