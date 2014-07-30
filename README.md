@@ -49,12 +49,13 @@ Supported Languages:
     * Natural Numbers { max 10 ** 63 }
     * Fractional Numbers
     * Negative Numbers
-
-*More languages will be added later.*
+* Deutsch
+    * Natural Number { max 10 ** 24 }
+    * Negative Numbers
 
 Some interfaces:
 
-    $> Kabal.supported_languages #=> ["Russian", "English"]
+    $> Kabal.supported_languages #=> ["Russian", "English", "Deutsch"]
     $> Kabal.to_text_in_language(1, "English") #=> "one"
     $> Kabal.to_text_in_language_by_index(1, 0) #=> "один"
     $> Kabal.current_language_supports_natural? #=> true
@@ -77,10 +78,10 @@ Some interfaces:
 To add Elfin language you should:
 
 1. Create `lib/kabal/languages/elfin.rb`. You'll describe rules of this language to drawing numbers there.
-    
+
     ```ruby
     require 'kabal/languages/language'
-        
+
     class Kabal::Elfin < Kabal::Language
         def convert(number)
             #anything you want
@@ -95,14 +96,14 @@ To add Elfin language you should:
       minus: #Minus on Elfin Language#
     ```
 4. Add `Elfin: "el"` to `yaml/languages.yml`.
-5. Add to `yaml/support.yml` 
+5. Add to `yaml/support.yml`
 
     ```yaml
-    el: 
-      natural: 
+    el:
+      natural:
         min: {min_of_your_realization}
-        max: {max_of_your_realization} 
-      fractional: 
+        max: {max_of_your_realization}
+      fractional:
         symbols: {count_of_symbols_after_dot_that_you_realized}
     ```
 6. Add `require "kabal/languages/elfin"` to `lib/kabal/supported_languages.rb`.
@@ -110,7 +111,7 @@ To add Elfin language you should:
 ## Testing
 
 Kabal has the BigTest. This test checks the correctness of the operation with all the numbers (0 to 10,000) in all supported languages.
-Be careful: BigTest now working around 6 minutes.
+Be careful: BigTest now working around 8 minutes.
 Run BigTest
 
     $> tconsole bigtest
@@ -118,5 +119,5 @@ Run BigTest
 Relax!
 
     $> tconsole all
-    
+
 runs all tests without Bigtest.
