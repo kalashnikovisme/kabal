@@ -12,7 +12,7 @@ module Kabal
       end
 
       def whole_part_name(number)
-        count = number.to_s.split('.')[0].to_i
+        count = number.floor
         feminine_natural_number_name(count) + " " + Declinations.name_with_declination(whole, count)
       end
 

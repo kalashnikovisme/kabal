@@ -6,7 +6,7 @@ module Kabal
       end
 
       def whole_part_name(number)
-        count = number.to_s.split('.')[0].to_i
+        count = number.floor
         natural_number_name(count)
       end
 
