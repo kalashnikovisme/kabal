@@ -92,4 +92,8 @@ class RussianTest < TestCase
   def test_111000
     assert_equal "сто одиннадцать тысяч", @rus.convert(111000)
   end
+  def test_zero_point_zero_zero_zero_zero_zero_zero_zero_five
+    assert_equal "ноль целых пять стомиллионных", @rus.convert(0.00000005)
+    assert_equal "минус ноль целых пять стомиллионных", @rus.convert(-0.00000005)
+  end
 end
