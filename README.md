@@ -53,11 +53,14 @@ Supported Languages:
     * Natural Number { max 10 ** 24 }
     * Negative Numbers
 
-Some interfaces:
+Interfaces:
 
     $> Kabal.supported_languages #=> ["Russian", "English", "Deutsch"]
+    $> Kabal.to_text "1" #=> "один"
     $> Kabal.to_text_in_language(1, "English") #=> "one"
+    $> Kabal.to_text_in_language("1", "English") #=> "one"
     $> Kabal.to_text_in_language_by_index(1, 0) #=> "один"
+    $> Kabal.to_text_in_language_by_index("1", 0) #=> "один"
     $> Kabal.current_language_supports_natural? #=> true
     $> Kabal.current_language_supports_fractional? #=> true
     $> Kabal.language_supports_negative? #=> true
