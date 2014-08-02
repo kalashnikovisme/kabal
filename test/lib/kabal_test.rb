@@ -10,22 +10,27 @@ class KabalTest < TestCase
 
   def test_to_text
     assert_equal "сто двадцать пять миллиардов сто двадцать пять миллионов сто двадцать пять тысяч сто двадцать пять", Kabal.to_text(125125125125)
+    assert_equal "сто двадцать пять миллиардов сто двадцать пять миллионов сто двадцать пять тысяч сто двадцать пять", Kabal.to_text("125125125125")
   end
 
   def test_to_text_in_language
     assert_equal "сто двадцать пять миллиардов сто двадцать пять миллионов сто двадцать пять тысяч сто двадцать пять", Kabal.to_text_in_language(125125125125, "Russian")
+    assert_equal "сто двадцать пять миллиардов сто двадцать пять миллионов сто двадцать пять тысяч сто двадцать пять", Kabal.to_text_in_language("125125125125", "Russian")
   end
 
   def test_to_text_in_language_by_index
     assert_equal  "сто двадцать пять миллиардов сто двадцать пять миллионов сто двадцать пять тысяч сто двадцать пять", Kabal.to_text_in_language_by_index(125125125125, 0)
+    assert_equal  "сто двадцать пять миллиардов сто двадцать пять миллионов сто двадцать пять тысяч сто двадцать пять", Kabal.to_text_in_language_by_index("125125125125", 0)
   end
 
   def test_to_text_in_language_by_index_with_unsupport_language
     assert_equal NoLanguageSupportError.message, Kabal.to_text_in_language_by_index(125125125125, 3)
+    assert_equal NoLanguageSupportError.message, Kabal.to_text_in_language_by_index("125125125125", 3)
   end
 
   def test_to_text_in_language_with_unsupported_language
     assert_equal NoLanguageSupportError.message, Kabal.to_text_in_language(125125125125, "Elfin")
+    assert_equal NoLanguageSupportError.message, Kabal.to_text_in_language("125125125125", "Elfin")
   end
 
   def test_language_init_with_unsupported_language
