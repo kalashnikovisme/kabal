@@ -51,6 +51,7 @@ Supported Languages:
     * Negative Numbers
 * Deutsch
     * Natural Number { max 10 ** 24 }
+    * Fractional Numbers
     * Negative Numbers
 
 Interfaces:
