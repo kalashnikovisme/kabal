@@ -23,7 +23,7 @@ module Kabal
   end
 
   def to_text_in_language(number, language_at_once)
-    number = Kernel::Float(number)
+    number = string_convert number
     languages = Kabal::Config::YamlLoader.yaml_object "languages"
     if languages[language_at_once]
       if number > maximum_for(language_at_once) or number < minimum_for(language_at_once)
@@ -38,7 +38,7 @@ module Kabal
   end
 
   def to_text_in_language_by_index(number, language_at_once_index)
-    number = Kernel::Float(number)
+    number = string_convert number
     languages = Kabal::Config::YamlLoader.yaml_object("languages").to_a
     if languages[language_at_once_index]
       obj = Object.const_get("Kabal::" + languages[language_at_once_index].first).new
@@ -86,5 +86,23 @@ module Kabal
   def minimum_for(language)
     obj = Object.const_get("Kabal::" + language).new
     obj.min_value
+  end
+
+  private
+
+  def string_convert(number)
+    if number.is_a? String
+      if string_is_float? number
+        Kernel::Float(number)
+      else
+        number.to_i
+      end
+    else
+      number
+    end
+  end
+
+  def string_is_float?(number)
+    number.include? "."
   end
 end
