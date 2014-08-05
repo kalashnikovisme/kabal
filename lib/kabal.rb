@@ -49,7 +49,7 @@ module Kabal
   end
 
   def current_language
-    @language ||= "Russian"
+    @language ||= "English"
     @language
   end
 
