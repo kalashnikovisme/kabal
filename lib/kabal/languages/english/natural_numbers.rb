@@ -27,15 +27,7 @@ module Kabal
         ten_powers number % (10 ** number_order(number))
       end
 
-      def create_number_name(number)
-        if @number_name.nil?
-          @number_name = count_name number
-        elsif count(number) != 0
-          @number_name += " " + count_name(number)
-        end
-      end
-
-      def count_name(number)
+      def count_name_with_order_name(number)
         three_words(count(number)) + " " + names["ten_powers"][number_order(number)]
       end
 

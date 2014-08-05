@@ -63,6 +63,10 @@ module Kabal
         end
         three_words count(number), false
       end
+
+      def count_name_with_order_name(number)
+        count_name(number) + " " + Declinations.name_with_declination(names["ten_powers"][number_order(number)], count(number))
+      end
     end
   end
 end
