@@ -29,14 +29,14 @@ module Kabal
 
       def create_number_name(number)
         if @number_name.nil?
-          @number_name = count_name(number) + " " + names["ten_powers"][number_order(number)]
+          @number_name = count_name number
         elsif count(number) != 0
-          @number_name += " " + count_name(number) + " " + names["ten_powers"][number_order(number)]
+          @number_name += " " + count_name(number)
         end
       end
 
       def count_name(number)
-        three_words count(number)
+        three_words(count(number)) + " " + names["ten_powers"][number_order(number)]
       end
 
       def less_thousands(number)
