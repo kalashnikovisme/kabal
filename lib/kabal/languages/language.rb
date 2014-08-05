@@ -1,5 +1,9 @@
+require 'kabal/languages/global/fractional_numbers'
+
 module Kabal
   class Language
+    include Kabal::GlobalRules::FractionalNumbers
+
     def initialize
       @names = Kabal::Config::YamlLoader.yaml_object "languages/#{lang}"
       @supports = Kabal::Config::YamlLoader.yaml_object("support")["support"][lang]
