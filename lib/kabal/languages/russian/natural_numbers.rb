@@ -8,15 +8,7 @@ module Kabal
         natural_number_name number
       end
 
-      def natural_number_name(number)
-        #FIXME switch case next lines
-        return single(number, true) if number >= 0 and number <= 19
-        return two_words(number, true) if number >= 20 and number <= 99
-        return three_words(number, true) if number >= 100 and number <= 999
-        ten_powers(number) if number >= 1000
-      end
-
-      def single(number, this_is_end = false)
+      def single(number, this_is_end = true)
         if @feminine_name
           @feminine_name = false
           return names["single_feminine"][count(number) % 10] if count(number) % 10 == 1 or count(number) % 10 == 2
@@ -28,14 +20,14 @@ module Kabal
         names["single"][number]
       end
 
-      def two_words(number, this_is_end = false)
+      def two_words(number, this_is_end = true)
         return single(number, this_is_end) if number <= 19
         number_name = names["two_words"][number / 10]
         number_name += " " + single(number % 10, this_is_end) if (number % 10 != 0)
         number_name
       end
 
-      def three_words(number, this_is_end = false)
+      def three_words(number, this_is_end = true)
         return two_words(number, this_is_end) if number / 100 == 0
         number_name = names["three_words"][number / 100]
         return number_name += " " + two_words(number % 100, this_is_end) if (number % 100 >= 20)
@@ -60,7 +52,7 @@ module Kabal
       end
 
       def less_thousands(number)
-        @number_name += " " + three_words(number % 1000, true) unless number == 0
+        @number_name += " " + three_words(number % 1000) unless number == 0
       end
 
       def count_name(number)
@@ -69,7 +61,7 @@ module Kabal
         else
           @feminine_name = false
         end
-        three_words count(number)
+        three_words count(number), false
       end
     end
   end
