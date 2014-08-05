@@ -13,6 +13,20 @@ module Kabal
       end
     end
 
+    def convert_number(number)
+      @number_name = nil
+      if need_minus? number
+        minus + " " + number_words(-number)
+      else
+        number_words number
+      end
+    end
+
+    def number_words(number)
+      return natural_number_name number.round if natural? number
+      fractional_number_name number if fractional? number
+    end
+
     def error(number)
       if number_is_out_of_the_range? number
         return Kabal::Errors::NumberOutRangeError.message
