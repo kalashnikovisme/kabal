@@ -1,12 +1,6 @@
 module Kabal
   module EnglishRules
     module NaturalNumbers
-      def natural_number_name(number)
-        return single number if number >= 0 and number <= 19
-        return two_words number if number >= 0 and number <= 99
-        return three_words number if number >= 100 and number <= 999
-        ten_powers number if number >= 100
-      end
       def single(number)
         names["single"][number]
       end

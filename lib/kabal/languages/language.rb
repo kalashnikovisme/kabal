@@ -1,7 +1,9 @@
 require 'kabal/languages/global/fractional_numbers'
+require 'kabal/languages/global/natural_numbers'
 
 module Kabal
   class Language
+    include Kabal::GlobalRules::NaturalNumbers
     include Kabal::GlobalRules::FractionalNumbers
 
     def initialize
