@@ -11,11 +11,11 @@ module Kabal
       def single(number, this_is_end = true)
         if @feminine_name
           @feminine_name = false
-          return names["single_feminine"][count(number) % 10] if count(number) % 10 == 1 or count(number) % 10 == 2
+          return names["single_feminine"][count(number) % 10] if count_can_be_feminine? number
         end
         if @fractional_part and this_is_end
           @fractional_part = false
-          return names["single_feminine"][count(number) % 10] if count(number) % 10 == 1 or count(number) % 10 == 2
+          return names["single_feminine"][count(number) % 10] if count_can_be_feminine? number
         end
         names["single"][number]
       end
@@ -43,12 +43,8 @@ module Kabal
         ten_powers(number % (10 ** number_order(number)))
       end
 
-      def create_number_name(number)
-        if @number_name.nil?
-          @number_name = count_name(number) + " " + Declinations.name_with_declination(names["ten_powers"][number_order(number)], count(number))
-        elsif count(number) != 0
-          @number_name += " " + count_name(number) + " " + Declinations.name_with_declination(names["ten_powers"][number_order(number)], count(number))
-        end
+      def count_can_be_feminine?(number)
+        count(number) % 10 == 1 or count(number) % 10 == 2
       end
 
       def less_thousands(number)
