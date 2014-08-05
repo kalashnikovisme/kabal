@@ -2,11 +2,11 @@ module Kabal
   module DeutschRules
     module NaturalNumbers
       def single(number)
-        unless @ein
-          names[:single][number]
-        else
+        if @ein
           @ein = false
           names[:single][number].chop
+        else
+          names[:single][number]
         end
       end
 
@@ -23,7 +23,7 @@ module Kabal
         @ein = (number / 100 == 1)
         number_name = single(number / 100) + names[:ten_powers][2]
         number_name += two_words(number % 100) if (number % 100 >= 10)
-        number_name += single(number % 100) if number % 100 < 10 and number % 100 != 0
+        number_name += single(number % 100) if number % 100 < 10 && number % 100 != 0
         number_name
       end
 
@@ -31,7 +31,7 @@ module Kabal
         less_thousands number if number_is_thousands? number
         return @number_name if number_is_thousands? number
         create_number_name number
-        ten_powers number % (10 ** number_order(number))
+        ten_powers number % (10**number_order(number))
       end
 
       def create_number_name(number)
@@ -64,7 +64,7 @@ module Kabal
       end
 
       def number_with_space(number)
-        @number_name = count_name(number) + " " + Declinations.name_with_declination(names[:ten_powers][number_order(number)], count(number)) + " "
+        @number_name = count_name(number) + ' ' + Declinations.name_with_declination(names[:ten_powers][number_order(number)], count(number)) + ' '
       end
 
       def number_without_space(number)

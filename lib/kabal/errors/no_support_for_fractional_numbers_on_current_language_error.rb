@@ -1,4 +1,4 @@
-require "kabal/errors/error"
+require 'kabal/errors/error'
 
 module Kabal
   module Errors

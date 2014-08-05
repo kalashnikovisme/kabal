@@ -4,11 +4,11 @@ module Kabal
   module Config
     class YamlLoader
       def self.gem_root
-        Gem::Specification.find_by_name("kabal").gem_dir
+        Gem::Specification.find_by_name('kabal').gem_dir
       end
 
       def self.yaml_object(filename)
-        yaml_obj = YAML.load_file(gem_root + "/yaml/" + filename + ".yml").with_indifferent_access
+        YAML.load_file(gem_root + '/yaml/' + filename + '.yml').with_indifferent_access
       end
     end
   end

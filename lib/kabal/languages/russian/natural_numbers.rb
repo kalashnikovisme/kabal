@@ -13,7 +13,7 @@ module Kabal
           @feminine_name = false
           return names[:single_feminine][count(number) % 10] if count_can_be_feminine? number
         end
-        if @fractional_part and this_is_end
+        if @fractional_part && this_is_end
           @fractional_part = false
           return names[:single_feminine][count(number) % 10] if count_can_be_feminine? number
         end
@@ -23,15 +23,15 @@ module Kabal
       def two_words(number, this_is_end = true)
         return single(number, this_is_end) if number <= 19
         number_name = names[:two_words][number / 10]
-        number_name += " " + single(number % 10, this_is_end) if (number % 10 != 0)
+        number_name += ' ' + single(number % 10, this_is_end) if (number % 10 != 0)
         number_name
       end
 
       def three_words(number, this_is_end = true)
         return two_words(number, this_is_end) if number / 100 == 0
         number_name = names[:three_words][number / 100]
-        return number_name += " " + two_words(number % 100, this_is_end) if (number % 100 >= 20)
-        return number_name += " " + single(number % 100, this_is_end) if (number % 100 != 0)
+        return number_name += ' ' + two_words(number % 100, this_is_end) if (number % 100 >= 20)
+        return number_name += ' ' + single(number % 100, this_is_end) if (number % 100 != 0)
         number_name
       end
 
@@ -44,15 +44,15 @@ module Kabal
       end
 
       def count_can_be_feminine?(number)
-        count(number) % 10 == 1 or count(number) % 10 == 2
+        count(number) % 10 == 1 || count(number) % 10 == 2
       end
 
       def less_thousands(number)
-        @number_name += " " + three_words(number % 1000) unless number == 0
+        @number_name += ' ' + three_words(number % 1000) unless number == 0
       end
 
       def count_name(number)
-        if (number.to_s[-4] == "1" or number.to_s[-4] == "2") and count(number) and (count(number) % 100) / 10 != 1 and number_order(number) == 3
+        if (number.to_s[-4] == '1' || number.to_s[-4] == '2') && count(number) && (count(number) % 100) / 10 != 1 && number_order(number) == 3
           @feminine_name = true
         else
           @feminine_name = false
@@ -61,7 +61,7 @@ module Kabal
       end
 
       def count_name_with_order_name(number)
-        count_name(number) + " " + Declinations.name_with_declination(names["ten_powers"][number_order(number)], count(number))
+        count_name(number) + ' ' + Declinations.name_with_declination(names['ten_powers'][number_order(number)], count(number))
       end
     end
   end

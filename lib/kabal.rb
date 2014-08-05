@@ -1,7 +1,7 @@
-autoload :Version, "kabal/version"
-require "kabal/supported_languages"
-require "kabal/errors"
-require "kabal/config"
+autoload :Version, 'kabal/version'
+require 'kabal/supported_languages'
+require 'kabal/errors'
+require 'kabal/config'
 require 'yaml'
 
 module Kabal
@@ -14,19 +14,19 @@ module Kabal
   end
 
   def language=(language_to_set)
-    languages = Kabal::Config::YamlLoader.yaml_object "languages"
+    languages = Kabal::Config::YamlLoader.yaml_object 'languages'
     if languages[language_to_set]
       @language = language_to_set
     else
-      raise NoLanguageSupportError.message
+      fail NoLanguageSupportError.message
     end
   end
 
   def to_text_in_language(number, language_at_once)
     number = string_convert number
-    languages = Kabal::Config::YamlLoader.yaml_object "languages"
+    languages = Kabal::Config::YamlLoader.yaml_object 'languages'
     if languages[language_at_once]
-      if number > maximum_for(language_at_once) or number < minimum_for(language_at_once)
+      if number > maximum_for(language_at_once) || number < minimum_for(language_at_once)
         NumberOutRangeError.message
       else
         obj = Object.const_get(language_class_name(language_at_once)).new
@@ -39,7 +39,7 @@ module Kabal
 
   def to_text_in_language_by_index(number, language_at_once_index)
     number = string_convert number
-    languages = Kabal::Config::YamlLoader.yaml_object("languages").to_a
+    languages = Kabal::Config::YamlLoader.yaml_object('languages').to_a
     if languages[language_at_once_index]
       obj = Object.const_get(language_class_name(languages[language_at_once_index].first)).new
       obj.convert number
@@ -49,12 +49,12 @@ module Kabal
   end
 
   def current_language
-    @language ||= "English"
+    @language ||= 'English'
     @language
   end
 
   def supported_languages
-    languages = Kabal::Config::YamlLoader.yaml_object "languages"
+    languages = Kabal::Config::YamlLoader.yaml_object 'languages'
     languages.keys
   end
 
@@ -103,10 +103,10 @@ module Kabal
   end
 
   def string_is_float?(number)
-    number.include? "."
+    number.include? '.'
   end
 
   def language_class_name(language)
-    "Kabal::" + language
+    'Kabal::' + language
   end
 end

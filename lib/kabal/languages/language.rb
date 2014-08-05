@@ -8,7 +8,8 @@ module Kabal
 
     def initialize
       @names = Kabal::Config::YamlLoader.yaml_object "languages/#{lang}"
-      @supports = Kabal::Config::YamlLoader.yaml_object("support")["support"][lang]
+      support_file = Kabal::Config::YamlLoader.yaml_object('support')
+      @supports = support_file[:support][lang]
     end
 
     def convert(number)
@@ -22,7 +23,7 @@ module Kabal
     def convert_number(number)
       @number_name = nil
       if need_minus? number
-        minus + " " + number_words(-number)
+        minus + ' ' + number_words(-number)
       else
         number_words number
       end
@@ -37,18 +38,18 @@ module Kabal
       if number_is_out_of_the_range? number
         return Kabal::Errors::NumberOutRangeError.message
       end
-      if not supports_fractional? and number % 1 != 0
+      if (!supports_fractional?) && (number % 1 != 0)
         Kabal::Errors::NoSupportForFractionalNumberOnCurrentLanguages.message
       end
     end
 
     def lang
-      languages = Kabal::Config::YamlLoader.yaml_object "languages"
-      @lang = languages[self.to_s.split(":")[-2]]
+      languages = Kabal::Config::YamlLoader.yaml_object 'languages'
+      @lang = languages[self.to_s.split(':')[-2]]
     end
 
     def supports_natural?
-      @supports["natural"]
+      @supports[:natural]
     end
 
     def supports_negative?
@@ -92,7 +93,7 @@ module Kabal
     end
 
     def number_is_google?(number)
-      count(number) == 10 and number_order(number) == 99
+      count(number) == 10 && number_order(number) == 99
     end
 
     def number_order(number)
@@ -100,7 +101,7 @@ module Kabal
     end
 
     def count(number)
-      number / (10 ** number_order(number))
+      number / (10**number_order(number))
     end
 
     def supports_fractional?
@@ -108,11 +109,15 @@ module Kabal
     end
 
     def number_is_out_of_the_range?(number)
-      number >= max_value or number <= min_value
+      number >= max_value || number <= min_value
+    end
+
+    def fractional_but_no_support_fractional?(number)
+      number % 1 != 0 && !supports_fractional?
     end
 
     def no_supports?(number)
-      (number % 1 != 0 and not supports_fractional?) or number_is_out_of_the_range?(number)
+      fractional_but_no_support_fractional?(number) || number_is_out_of_the_range?(number)
     end
 
     def need_minus?(number)
