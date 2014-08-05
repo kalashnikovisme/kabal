@@ -4,7 +4,6 @@ include Kabal
 
 class KabalTest < TestCase
   def test_language_init
-    assert_equal "English", Kabal.current_language
     Kabal.language = "Russian"
     assert_equal "Russian", Kabal.current_language
   end
