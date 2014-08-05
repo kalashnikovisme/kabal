@@ -6,8 +6,8 @@ module Kabal
       end
 
       def fractional_part_name(number)
-        fractional_part = (number % 1).round(fractional_number_order(number))
-        fractional_order = ((fractional_part) * (10 ** fractional_number_order(number))).to_s.split('.')[0].to_i
+        fractional_part = (number % 1).round(fractional_part_order(number))
+        fractional_order = ((fractional_part) * (10 ** fractional_part_order(number))).to_s.split('.')[0].to_i
         feminine_natural_number_name(fractional_order, true) + " " + Declinations.name_with_declination(fractional_ten_powers_name(number), fractional_part)
       end
 
@@ -21,30 +21,20 @@ module Kabal
         if need_pre_word? number
           ten_powers_name = fractional_pre_word(number) + fractional_order_word(number)
         else
-          ten_powers_name = names["fractional_ten_powers"][fractional_number_order(number)]
+          ten_powers_name = names["fractional_ten_powers"][fractional_part_order(number)]
         end
       end
 
       def fractional_order_word(number)
-        names["fractional_ten_powers"][fractional_number_order(number) - (fractional_number_order(number) % 3)]
+        names[:fractional_ten_powers][fractional_part_order(number) - (fractional_part_order(number) % 3)]
       end
 
       def fractional_pre_word(number)
-        names["fractional_pre_words"][fractional_number_order(number) % 3]
+        names[:fractional_pre_words][fractional_part_order(number) % 3]
       end
 
       def need_pre_word?(number)
-        fractional_number_order(number) > 3 and fractional_number_order(number) % 3 != 0
-      end
-
-      def fractional_number_order(number)
-        #FIXME find better way with whole 0 numbers
-        number_string = number.to_s
-        if number_string.include? "-"
-          number_string.split('-')[1].to_i
-        else
-          number_string.split('.')[1].length
-        end
+        fractional_part_order(number) > 3 and fractional_part_order(number) % 3 != 0
       end
     end
   end

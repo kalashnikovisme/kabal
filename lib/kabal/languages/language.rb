@@ -1,5 +1,11 @@
+require 'kabal/languages/global/fractional_numbers'
+require 'kabal/languages/global/natural_numbers'
+
 module Kabal
   class Language
+    include Kabal::GlobalRules::NaturalNumbers
+    include Kabal::GlobalRules::FractionalNumbers
+
     def initialize
       @names = Kabal::Config::YamlLoader.yaml_object "languages/#{lang}"
       @supports = Kabal::Config::YamlLoader.yaml_object("support")["support"][lang]
@@ -11,6 +17,20 @@ module Kabal
       else
         convert_number number
       end
+    end
+
+    def convert_number(number)
+      @number_name = nil
+      if need_minus? number
+        minus + " " + number_words(-number)
+      else
+        number_words number
+      end
+    end
+
+    def number_words(number)
+      return natural_number_name number.round if natural? number
+      fractional_number_name number if fractional? number
     end
 
     def error(number)
@@ -36,11 +56,11 @@ module Kabal
     end
 
     def min_value
-      eval @supports["natural"]["min"]
+      eval @supports[:natural][:min]
     end
 
     def max_value
-      eval @supports["natural"]["max"]
+      eval @supports[:natural][:max]
     end
 
     def names
@@ -48,15 +68,15 @@ module Kabal
     end
 
     def minus
-      names["minus"]
+      names[:minus]
     end
 
     def whole
-      names["whole"]
+      names[:whole]
     end
 
     def dot
-      names["dot"]
+      names[:dot]
     end
 
     def fractional?(number)
@@ -84,7 +104,7 @@ module Kabal
     end
 
     def supports_fractional?
-      @supports["fractional"]
+      @supports[:fractional]
     end
 
     def number_is_out_of_the_range?(number)

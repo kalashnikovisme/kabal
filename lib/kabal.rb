@@ -29,7 +29,7 @@ module Kabal
       if number > maximum_for(language_at_once) or number < minimum_for(language_at_once)
         NumberOutRangeError.message
       else
-        obj = Object.const_get("Kabal::" + language_at_once).new
+        obj = Object.const_get(language_class_name(language_at_once)).new
         obj.convert number
       end
     else
@@ -41,7 +41,7 @@ module Kabal
     number = string_convert number
     languages = Kabal::Config::YamlLoader.yaml_object("languages").to_a
     if languages[language_at_once_index]
-      obj = Object.const_get("Kabal::" + languages[language_at_once_index].first).new
+      obj = Object.const_get(language_class_name(languages[language_at_once_index].first)).new
       obj.convert number
     else
       NoLanguageSupportError.message
@@ -49,7 +49,7 @@ module Kabal
   end
 
   def current_language
-    @language ||= "Russian"
+    @language ||= "English"
     @language
   end
 
@@ -59,32 +59,32 @@ module Kabal
   end
 
   def current_language_supports_natural?
-    obj = Object.const_get("Kabal::" + current_language).new
+    obj = Object.const_get(language_class_name(current_language)).new
     obj.supports_natural?
   end
 
   def current_language_supports_fractional?
-    obj = Object.const_get("Kabal::" + current_language).new
+    obj = Object.const_get(language_class_name(current_language)).new
     obj.supports_fractional?
   end
 
   def language_supports_negative?(language)
-    obj = Object.const_get("Kabal::" + language).new
+    obj = Object.const_get(language_class_name(language)).new
     obj.supports_negative?
   end
 
   def language_supports_fractional?(language)
-    obj = Object.const_get("Kabal::" + language).new
+    obj = Object.const_get(language_class_name(language)).new
     obj.supports_fractional?
   end
 
   def maximum_for(language)
-    obj = Object.const_get("Kabal::" + language).new
+    obj = Object.const_get(language_class_name(language)).new
     obj.max_value
   end
 
   def minimum_for(language)
-    obj = Object.const_get("Kabal::" + language).new
+    obj = Object.const_get(language_class_name(language)).new
     obj.min_value
   end
 
@@ -104,5 +104,9 @@ module Kabal
 
   def string_is_float?(number)
     number.include? "."
+  end
+
+  def language_class_name(language)
+    "Kabal::" + language
   end
 end

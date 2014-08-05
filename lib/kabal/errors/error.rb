@@ -8,7 +8,7 @@ module Kabal
 
       def self.message
         errors = Kabal::Config::YamlLoader.yaml_object "errors"
-        errors["errors"]["messages"][@code]
+        errors[:errors][:messages][@code]
       end
     end
   end
