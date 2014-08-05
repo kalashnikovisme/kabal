@@ -5,10 +5,11 @@ include Kabal
 class KabalTest < TestCase
   def test_language_init
     Kabal.language = "Russian"
-    assert_equal Kabal.current_language, "Russian"
+    assert_equal "Russian", Kabal.current_language
   end
 
   def test_to_text
+    Kabal.language = "Russian"
     assert_equal "сто двадцать пять миллиардов сто двадцать пять миллионов сто двадцать пять тысяч сто двадцать пять", Kabal.to_text(125125125125)
     assert_equal "сто двадцать пять миллиардов сто двадцать пять миллионов сто двадцать пять тысяч сто двадцать пять", Kabal.to_text("125125125125")
   end
@@ -57,15 +58,15 @@ class KabalTest < TestCase
   end
 
   def test_maximum_for_language
-    assert_equal Kabal.maximum_for("Russian"), 10 ** 102
-    assert_equal Kabal.maximum_for("English"), (10 ** 66) - 1
-    assert_equal Kabal.maximum_for("Deutsch"), (10 ** 24) - 1
+    assert_equal 10 ** 102, Kabal.maximum_for("Russian")
+    assert_equal (10 ** 66) - 1, Kabal.maximum_for("English")
+    assert_equal (10 ** 24) - 1, Kabal.maximum_for("Deutsch")
   end
 
   def test_minimum_for_language
-    assert_equal Kabal.minimum_for("Russian"), -(10 ** 102)
-    assert_equal Kabal.minimum_for("English"), -(10 ** 66) + 1
-    assert_equal Kabal.minimum_for("Deutsch"), -(10 ** 24) + 1
+    assert_equal -(10 ** 102), Kabal.minimum_for("Russian")
+    assert_equal -(10 ** 66) + 1, Kabal.minimum_for("English")
+    assert_equal -(10 ** 24) + 1, Kabal.minimum_for("Deutsch")
   end
 
   def test_minimum_and_maximum_convert_for_language
@@ -88,9 +89,11 @@ class KabalTest < TestCase
   end
 
   def test_bad_number_test
-    assert_equal Kabal.to_text("110000000000000001011"), "сто десять квинтиллионов одна тысяча одиннадцать"
-    assert_equal Kabal.to_text("11000000000000011"), "одиннадцать квадраллионов одиннадцать"
-    assert_equal Kabal.to_text("112223334445556661011"), "сто двенадцать квинтиллиона двести двадцать три квадраллиона триста тридцать четыре триллиона четыреста сорок пять миллиардов пятьсот пятьдесят шесть миллионов шестьсот шестьдесят одна тысяча одиннадцать"
-    assert_equal Kabal.to_text("909090909.1234"), "девятьсот девять миллионов девяносто тысяч девятьсот девять целых девятьсот девять миллионов девяносто тысяч девятьсот девять одна тысяча двести тридцать четыре десятитысячных"
+    Kabal.language = "Russian"
+    assert_equal "сто десять квинтиллионов одна тысяча одиннадцать", Kabal.to_text("110000000000000001011")
+    assert_equal "одиннадцать квадраллионов одиннадцать", Kabal.to_text("11000000000000011")
+    assert_equal "сто двенадцать квинтиллиона двести двадцать три квадраллиона триста тридцать четыре триллиона четыреста сорок пять миллиардов пятьсот пятьдесят шесть миллионов шестьсот шестьдесят одна тысяча одиннадцать", Kabal.to_text("112223334445556661011")
+    assert_equal "девятьсот девять миллионов девяносто тысяч девятьсот девять целых одна тысяча двести тридцать четыре десятитысячных", Kabal.to_text("909090909.1234")
+    assert_equal "девятьсот девять миллионов девяносто тысяч девятьсот девять целых одна тысяча двести тридцать четыре десятитысячных", Kabal.to_text(909090909.1234)
   end
 end

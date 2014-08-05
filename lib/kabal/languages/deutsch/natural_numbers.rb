@@ -1,35 +1,29 @@
 module Kabal
   module DeutschRules
     module NaturalNumbers
-      def natural_number_name(number)
-        return single number if number >= 0 and number <= 19
-        return two_words number if number >= 0 and number <= 99
-        return three_words number if number >= 100 and number <= 999
-        ten_powers number if number >= 100
-      end
       def single(number)
-        unless @ein
-          names["single"][number]
-        else
+        if @ein
           @ein = false
-          names["single"][number].chop
+          names[:single][number].chop
+        else
+          names[:single][number]
         end
       end
 
       def two_words(number)
         return single number if number <= 19
-        number_name = names["two_words"][number / 10]
+        number_name = names[:two_words][number / 10]
         @ein = (number % 10 == 1)
-        number_name = single(number % 10) + names["and"] + number_name if (number % 10 != 0)
+        number_name = single(number % 10) + names[:and] + number_name if (number % 10 != 0)
         number_name
       end
 
       def three_words(number)
         return two_words number if number <= 99
         @ein = (number / 100 == 1)
-        number_name = single(number / 100) + names["ten_powers"][2]
+        number_name = single(number / 100) + names[:ten_powers][2]
         number_name += two_words(number % 100) if (number % 100 >= 10)
-        number_name += single(number % 100) if number % 100 < 10 and number % 100 != 0
+        number_name += single(number % 100) if number % 100 < 10 && number % 100 != 0
         number_name
       end
 
@@ -37,7 +31,7 @@ module Kabal
         less_thousands number if number_is_thousands? number
         return @number_name if number_is_thousands? number
         create_number_name number
-        ten_powers number % (10 ** number_order(number))
+        ten_powers number % (10**number_order(number))
       end
 
       def create_number_name(number)
@@ -63,10 +57,18 @@ module Kabal
 
       def words_to_add(number)
         if millions_or_greater?(number)
-          @number_name = count_name(number) + " " + Declinations.name_with_declination(names["ten_powers"][number_order(number)], count(number)) + " "
+          number_with_space number
         else
-          @number_name = count_name(number) + Declinations.name_with_declination(names["ten_powers"][number_order(number)], count(number))
+          number_without_space number
         end
+      end
+
+      def number_with_space(number)
+        @number_name = count_name(number) + ' ' + Declinations.name_with_declination(names[:ten_powers][number_order(number)], count(number)) + ' '
+      end
+
+      def number_without_space(number)
+        @number_name = count_name(number) + Declinations.name_with_declination(names[:ten_powers][number_order(number)], count(number))
       end
     end
   end

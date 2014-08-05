@@ -1,8 +1,15 @@
+require 'kabal/languages/global/fractional_numbers'
+require 'kabal/languages/global/natural_numbers'
+
 module Kabal
   class Language
+    include Kabal::GlobalRules::NaturalNumbers
+    include Kabal::GlobalRules::FractionalNumbers
+
     def initialize
       @names = Kabal::Config::YamlLoader.yaml_object "languages/#{lang}"
-      @supports = Kabal::Config::YamlLoader.yaml_object("support")["support"][lang]
+      support_file = Kabal::Config::YamlLoader.yaml_object('support')
+      @supports = support_file[:support][lang]
     end
 
     def convert(number)
@@ -13,22 +20,36 @@ module Kabal
       end
     end
 
+    def convert_number(number)
+      @number_name = nil
+      if need_minus? number
+        minus + ' ' + number_words(-number)
+      else
+        number_words number
+      end
+    end
+
+    def number_words(number)
+      return natural_number_name number.round if natural? number
+      fractional_number_name number if fractional? number
+    end
+
     def error(number)
       if number_is_out_of_the_range? number
         return Kabal::Errors::NumberOutRangeError.message
       end
-      if not supports_fractional? and number % 1 != 0
+      if (!supports_fractional?) && (number % 1 != 0)
         Kabal::Errors::NoSupportForFractionalNumberOnCurrentLanguages.message
       end
     end
 
     def lang
-      languages = Kabal::Config::YamlLoader.yaml_object "languages"
-      @lang = languages[self.to_s.split(":")[-2]]
+      languages = Kabal::Config::YamlLoader.yaml_object 'languages'
+      @lang = languages[self.to_s.split(':')[-2]]
     end
 
     def supports_natural?
-      @supports["natural"]
+      @supports[:natural]
     end
 
     def supports_negative?
@@ -36,11 +57,11 @@ module Kabal
     end
 
     def min_value
-      eval @supports["natural"]["min"]
+      eval @supports[:natural][:min]
     end
 
     def max_value
-      eval @supports["natural"]["max"]
+      eval @supports[:natural][:max]
     end
 
     def names
@@ -48,15 +69,15 @@ module Kabal
     end
 
     def minus
-      names["minus"]
+      names[:minus]
     end
 
     def whole
-      names["whole"]
+      names[:whole]
     end
 
     def dot
-      names["dot"]
+      names[:dot]
     end
 
     def fractional?(number)
@@ -72,7 +93,7 @@ module Kabal
     end
 
     def number_is_google?(number)
-      count(number) == 10 and number_order(number) == 99
+      count(number) == 10 && number_order(number) == 99
     end
 
     def number_order(number)
@@ -80,19 +101,23 @@ module Kabal
     end
 
     def count(number)
-      number / (10 ** number_order(number))
+      number / (10**number_order(number))
     end
 
     def supports_fractional?
-      @supports["fractional"]
+      @supports[:fractional]
     end
 
     def number_is_out_of_the_range?(number)
-      number >= max_value or number <= min_value
+      number >= max_value || number <= min_value
+    end
+
+    def fractional_but_no_support_fractional?(number)
+      number % 1 != 0 && !supports_fractional?
     end
 
     def no_supports?(number)
-      (number % 1 != 0 and not supports_fractional?) or number_is_out_of_the_range?(number)
+      fractional_but_no_support_fractional?(number) || number_is_out_of_the_range?(number)
     end
 
     def need_minus?(number)

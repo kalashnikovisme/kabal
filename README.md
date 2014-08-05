@@ -7,9 +7,10 @@
 [![endorse](https://api.coderwall.com/kalashnikovisme/endorsecount.png)](https://coderwall.com/kalashnikovisme)
 [![Dependency Status](https://gemnasium.com/kalashnikovisme/kabal.svg)](https://gemnasium.com/kalashnikovisme/kabal)
 [![Still MainTained](http://stillmaintained.com/kalashnikovisme/kabal.png)](http://stillmaintained.com/kalashnikovisme/kabal)
+[![Code Climate](https://codeclimate.com/github/kalashnikovisme/kabal/badges/gpa.svg)](https://codeclimate.com/github/kalashnikovisme/kabal)
 
 
-Kabal allows you to translate number into text.
+Kabal allows you to translate number into text. See Demo on [http://kabal.herokuapp.com](http://kabal.herokuapp.com)
 
 ## Installation
 
@@ -51,6 +52,7 @@ Supported Languages:
     * Negative Numbers
 * Deutsch
     * Natural Number { max 10 ** 24 }
+    * Fractional Numbers
     * Negative Numbers
 
 Interfaces:
