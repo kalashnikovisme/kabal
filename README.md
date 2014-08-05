@@ -9,7 +9,7 @@
 [![Still MainTained](http://stillmaintained.com/kalashnikovisme/kabal.png)](http://stillmaintained.com/kalashnikovisme/kabal)
 
 
-Kabal allows you to translate number into text.
+Kabal allows you to translate number into text. See Demo on [http://kabal.herokuapp.com](http://kabal.herokuapp.com)
 
 ## Installation
 
