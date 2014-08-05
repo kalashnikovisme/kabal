@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Pavel Kalashnikov"]
   spec.email         = ["kalashnikovisme@gmail.com"]
   spec.summary       = %q{Number To Text Helper}
-  spec.description   = %q{Kabal allows you to translate numbers into text on languages: English, Russian, Deutsch}
+  spec.description   = %q{Kabal allows you to translate numbers into text on languages: English, Russian, Deutsch. See demo on http://kabal.herokuapp.com}
   spec.homepage      = "https://github.com/kalashnikovisme/kabal"
   spec.license       = "MIT"
   spec.required_ruby_version = '>= 2.0.0'
