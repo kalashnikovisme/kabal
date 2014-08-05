@@ -2,6 +2,7 @@ module Kabal
   module RussianRules
     module NaturalNumbers
       def feminine_natural_number_name(number, fractional_part = false)
+        @number_name = nil
         @number = number
         @feminine_name = !fractional_part
         @fractional_part = fractional_part
@@ -61,7 +62,7 @@ module Kabal
       end
 
       def count_name_with_order_name(number)
-        count_name(number) + ' ' + Declinations.name_with_declination(names['ten_powers'][number_order(number)], count(number))
+        count_name(number) + ' ' + Declinations.name_with_declination(names[:ten_powers][number_order(number)], count(number))
       end
     end
   end
