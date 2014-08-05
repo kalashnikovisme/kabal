@@ -56,11 +56,11 @@ module Kabal
     end
 
     def min_value
-      eval @supports["natural"]["min"]
+      eval @supports[:natural][:min]
     end
 
     def max_value
-      eval @supports["natural"]["max"]
+      eval @supports[:natural][:max]
     end
 
     def names
@@ -68,15 +68,15 @@ module Kabal
     end
 
     def minus
-      names["minus"]
+      names[:minus]
     end
 
     def whole
-      names["whole"]
+      names[:whole]
     end
 
     def dot
-      names["dot"]
+      names[:dot]
     end
 
     def fractional?(number)
@@ -104,7 +104,7 @@ module Kabal
     end
 
     def supports_fractional?
-      @supports["fractional"]
+      @supports[:fractional]
     end
 
     def number_is_out_of_the_range?(number)

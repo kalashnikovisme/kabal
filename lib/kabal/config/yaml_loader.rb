@@ -1,3 +1,5 @@
+require 'active_support/core_ext/hash'
+
 module Kabal
   module Config
     class YamlLoader
@@ -6,7 +8,7 @@ module Kabal
       end
 
       def self.yaml_object(filename)
-        yaml_obj = YAML.load_file(gem_root + "/yaml/" + filename + ".yml")
+        yaml_obj = YAML.load_file(gem_root + "/yaml/" + filename + ".yml").with_indifferent_access
       end
     end
   end

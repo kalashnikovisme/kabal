@@ -26,11 +26,11 @@ module Kabal
       end
 
       def fractional_order_word(number)
-        names["fractional_ten_powers"][fractional_part_order(number) - (fractional_part_order(number) % 3)]
+        names[:fractional_ten_powers][fractional_part_order(number) - (fractional_part_order(number) % 3)]
       end
 
       def fractional_pre_word(number)
-        names["fractional_pre_words"][fractional_part_order(number) % 3]
+        names[:fractional_pre_words][fractional_part_order(number) % 3]
       end
 
       def need_pre_word?(number)
