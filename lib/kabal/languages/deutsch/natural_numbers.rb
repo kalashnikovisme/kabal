@@ -57,10 +57,18 @@ module Kabal
 
       def words_to_add(number)
         if millions_or_greater?(number)
-          @number_name = count_name(number) + " " + Declinations.name_with_declination(names["ten_powers"][number_order(number)], count(number)) + " "
+          number_with_space number
         else
-          @number_name = count_name(number) + Declinations.name_with_declination(names["ten_powers"][number_order(number)], count(number))
+          number_without_space number
         end
+      end
+
+      def number_with_space(number)
+        @number_name = count_name(number) + " " + Declinations.name_with_declination(names["ten_powers"][number_order(number)], count(number)) + " "
+      end
+
+      def number_without_space(number)
+        @number_name = count_name(number) + Declinations.name_with_declination(names["ten_powers"][number_order(number)], count(number))
       end
     end
   end
