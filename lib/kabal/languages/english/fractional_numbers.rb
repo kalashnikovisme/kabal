@@ -3,9 +3,10 @@ module Kabal
     module FractionalNumbers
       def fractional_number_name(number)
         if whole_part_name(number) != ''
-          whole_part_name(number) + ' ' + dot + ' ' + fractional_part_name(number)
+
+          join_with_spaces whole_part_name(number), dot, fractional_part_name(number)
         else
-          dot + ' ' + fractional_part_name(number)
+          join_with_spaces dot, fractional_part_name(number)
         end
       end
 

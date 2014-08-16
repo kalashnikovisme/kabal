@@ -31,7 +31,7 @@ module Kabal
       def number_name_with_zeros
         name = ''
         zeros_number.times do
-          name += names[:single][0] + ' '
+          name += names[:single][0] + space
         end
         name
       end

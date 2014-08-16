@@ -24,15 +24,15 @@ module Kabal
       def two_words(number, this_is_end = true)
         return single(number, this_is_end) if number <= 19
         number_name = names[:two_words][number / 10]
-        number_name += ' ' + single(number % 10, this_is_end) if (number % 10 != 0)
+        number_name += space + single(number % 10, this_is_end) if (number % 10 != 0)
         number_name
       end
 
       def three_words(number, this_is_end = true)
         return two_words(number, this_is_end) if number / 100 == 0
         number_name = names[:three_words][number / 100]
-        return number_name += ' ' + two_words(number % 100, this_is_end) if (number % 100 >= 20)
-        return number_name += ' ' + single(number % 100, this_is_end) if (number % 100 != 0)
+        return number_name += space + two_words(number % 100, this_is_end) if (number % 100 >= 20)
+        return number_name += space + single(number % 100, this_is_end) if (number % 100 != 0)
         number_name
       end
 
@@ -49,7 +49,7 @@ module Kabal
       end
 
       def less_thousands(number)
-        @number_name += ' ' + three_words(number % 1000) unless number == 0
+        @number_name += space + three_words(number % 1000) unless number == 0
       end
 
       def count_name(number)
@@ -62,7 +62,7 @@ module Kabal
       end
 
       def count_name_with_order_name(number)
-        count_name(number) + ' ' + Declinations.name_with_declination(names[:ten_powers][number_order(number)], count(number))
+        join_with_spaces count_name(number), Declinations.name_with_declination(names[:ten_powers][number_order(number)], count(number))
       end
     end
   end

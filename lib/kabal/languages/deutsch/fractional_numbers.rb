@@ -2,7 +2,7 @@ module Kabal
   module DeutschRules
     module FractionalNumbers
       def fractional_number_name(number)
-        whole_part_name(number) + ' ' + dot + ' ' + fractional_part_name(number)
+        join_with_spaces whole_part_name(number), dot, fractional_part_name(number)
       end
 
       def whole_part_name(number)
