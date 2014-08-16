@@ -23,7 +23,7 @@ module Kabal
     def convert_number(number)
       @number_name = nil
       if need_minus? number
-        minus + ' ' + number_words(-number)
+        join_with_spaces minus, number_words(-number)
       else
         number_words number
       end
@@ -122,6 +122,14 @@ module Kabal
 
     def need_minus?(number)
       number < 0
+    end
+
+    def space
+      ' '
+    end
+
+    def join_with_spaces(*words)
+      words.to_a.join space
     end
   end
 end

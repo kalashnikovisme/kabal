@@ -12,7 +12,7 @@ module Kabal
         if @number_name.nil?
           @number_name = count_name_with_order_name number
         elsif count(number) != 0
-          @number_name += ' ' + count_name_with_order_name(number)
+          @number_name += space + count_name_with_order_name(number)
         end
       end
     end

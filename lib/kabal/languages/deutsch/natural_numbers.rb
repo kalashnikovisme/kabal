@@ -64,7 +64,7 @@ module Kabal
       end
 
       def number_with_space(number)
-        @number_name = count_name(number) + ' ' + Declinations.name_with_declination(names[:ten_powers][number_order(number)], count(number)) + ' '
+        @number_name = join_with_spaces(count_name(number), Declinations.name_with_declination(names[:ten_powers][number_order(number)], count(number))) + space
       end
 
       def number_without_space(number)
