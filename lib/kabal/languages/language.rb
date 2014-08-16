@@ -1,10 +1,12 @@
 require 'kabal/languages/global/fractional_numbers'
 require 'kabal/languages/global/natural_numbers'
+require 'kabal/languages/global/number_properities'
 
 module Kabal
   class Language
     include Kabal::GlobalRules::NaturalNumbers
     include Kabal::GlobalRules::FractionalNumbers
+    include Kabal::GlobalRules::NumberProperities
 
     def initialize
       @names = Kabal::Config::YamlLoader.yaml_object "languages/#{lang}"
@@ -80,22 +82,6 @@ module Kabal
       names[:dot]
     end
 
-    def fractional?(number)
-      number % 1 != 0
-    end
-
-    def natural?(number)
-      number % 1 == 0
-    end
-
-    def number_is_thousands?(number)
-      number_order(number) < 3
-    end
-
-    def number_is_google?(number)
-      count(number) == 10 && number_order(number) == 99
-    end
-
     def number_order(number)
       ((number.to_s.length - 1) / 3) * 3
     end
@@ -113,15 +99,11 @@ module Kabal
     end
 
     def fractional_but_no_support_fractional?(number)
-      number % 1 != 0 && !supports_fractional?
+      fractional?(number) && !supports_fractional?
     end
 
     def no_supports?(number)
       fractional_but_no_support_fractional?(number) || number_is_out_of_the_range?(number)
-    end
-
-    def need_minus?(number)
-      number < 0
     end
 
     def space
