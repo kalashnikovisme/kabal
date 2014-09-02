@@ -38,9 +38,8 @@ module Kabal
 
     def error(number)
       if number_is_out_of_the_range? number
-        return Kabal::Errors::NumberOutRangeError.message
-      end
-      if (!supports_fractional?) && (number % 1 != 0)
+        Kabal::Errors::NumberOutRangeError.message
+      elsif (!supports_fractional?) && (number % 1 != 0)
         Kabal::Errors::NoSupportForFractionalNumberOnCurrentLanguages.message
       end
     end
