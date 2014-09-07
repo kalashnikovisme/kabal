@@ -53,7 +53,7 @@ module Kabal
     @language
   end
 
-  def supported_languages
+  def self.supported_languages
     languages = Kabal::Config::YamlLoader.yaml_object 'languages'
     languages.keys
   end
@@ -86,6 +86,13 @@ module Kabal
   def minimum_for(language)
     obj = Object.const_get(language_class_name(language)).new
     obj.min_value
+  end
+
+  #Define languages methods
+  supported_languages.each do |language|
+    define_method "to_text_in_#{language.downcase}" do |number|
+      to_text_in_language number, language
+    end
   end
 
   private

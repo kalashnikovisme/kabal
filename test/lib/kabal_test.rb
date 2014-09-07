@@ -96,4 +96,10 @@ class KabalTest < TestCase
     assert_equal "девятьсот девять миллионов девяносто тысяч девятьсот девять целых одна тысяча двести тридцать четыре десятитысячных", Kabal.to_text("909090909.1234")
     assert_equal "девятьсот девять миллионов девяносто тысяч девятьсот девять целых одна тысяча двести тридцать четыре десятитысячных", Kabal.to_text(909090909.1234)
   end
+
+  def test_defined_methods
+    assert Kabal.to_text_in_russian 1
+    assert Kabal.to_text_in_english 1
+    assert Kabal.to_text_in_deutsch 1
+  end
 end
