@@ -33,6 +33,8 @@ Kabal has one main feature - number to text "converting".
     $> require 'kabal'
     $> include Kabal
     $> Kabal.to_text 1 #=> "один"
+    $> Kabal.to_text_in_russian 1 #=> "один"
+    $> Kabal.to_text_in_english 1 #=> "one"
     $> Kabal.to_text -1000000 #=> "минус один миллион"
 
 You can choose language to "converting".
@@ -112,6 +114,8 @@ To add Elfin language you should:
         symbols: {count_of_symbols_after_dot_that_you_realized}
     ```
 6. Add `require "kabal/languages/elfin"` to `lib/kabal/supported_languages.rb`.
+
+HINT: Method `Kabal.to_text_in_elfin` will create automatically.
 
 ## Testing
 
