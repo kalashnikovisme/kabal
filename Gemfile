@@ -9,3 +9,4 @@ gem 'coveralls', require: false
 gem 'simplecov'
 gem 'minitest', '4.7.5'
 gem 'activesupport'
+gem 'thor'
