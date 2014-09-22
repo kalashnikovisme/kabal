@@ -114,6 +114,6 @@ module Kabal
   end
 
   def language_class_name(language)
-    'Kabal::' + language
+    'Kabal::' + language.to_s
   end
 end
