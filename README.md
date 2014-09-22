@@ -62,7 +62,9 @@ Interfaces:
     $> Kabal.supported_languages #=> ["Russian", "English", "Deutsch"]
     $> Kabal.to_text "1" #=> "один"
     $> Kabal.to_text_in_language(1, "English") #=> "one"
+    $> Kabal.to_text_in_language(1, :English) #=> "one"
     $> Kabal.to_text_in_language("1", "English") #=> "one"
+    $> Kabal.to_text_in_language("1", :English) #=> "one"
     $> Kabal.to_text_in_language_by_index(1, 0) #=> "один"
     $> Kabal.to_text_in_language_by_index("1", 0) #=> "один"
     $> Kabal.current_language_supports_natural? #=> true
