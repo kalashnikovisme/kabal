@@ -1,0 +1,7 @@
+require 'test_helper'
+
+class <%= language_name.capitalize %>Test < TestCase
+  def setup
+    @lang = Kabal::<%= language_name.capitalize %>.new
+  end
+end

@@ -1,0 +1,9 @@
+require 'kabal/languages/language'
+
+module Kabal
+  class <%= language_name.capitalize %> < Kabal::Language
+    def convert
+      #your code here
+    end
+  end
+end
