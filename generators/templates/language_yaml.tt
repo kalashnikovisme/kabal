@@ -1,0 +1,3 @@
+<%= language_abbr %>:
+  minus: "minus on <%= language_name.capitalize %>"
+  0: "zero on <%= language_name.capitalize %>"

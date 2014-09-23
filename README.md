@@ -84,7 +84,13 @@ Interfaces:
 
 ## How add languages
 
-To add Elfin language you should:
+To add Elfin language you should use language generator:
+
+    ```shell
+    $> cd generators
+    $> thor add_language elfin el
+    ```
+It will:
 
 1. Create `lib/kabal/languages/elfin.rb`. You'll describe rules of this language to drawing numbers there.
 
@@ -118,6 +124,13 @@ To add Elfin language you should:
 6. Add `require "kabal/languages/elfin"` to `lib/kabal/supported_languages.rb`.
 
 HINT: Method `Kabal.to_text_in_elfin` will create automatically.
+
+If you want remove language:
+
+    ```shell
+    $> cd generators
+    $> thor remove_language elfin
+    ```
 
 ## Testing
 
