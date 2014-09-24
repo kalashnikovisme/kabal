@@ -26,12 +26,10 @@ module Kabal
     number = string_convert number
     languages = Kabal::Config::YamlLoader.yaml_object 'languages'
     if languages[language_at_once]
-      if number > maximum_for(language_at_once) || number < minimum_for(language_at_once)
-        NumberOutRangeError.message
-      else
-        obj = Object.const_get(language_class_name(language_at_once)).new
-        obj.convert number
-      end
+      convert_in_language number, language_at_once
+    elsif languages.values.include? language_at_once.to_s
+      need_language = languages.keys.select { |key| languages[key] == language_at_once.to_s }.first
+      convert_in_language number, need_language
     else
       NoLanguageSupportError.message
     end
@@ -115,5 +113,14 @@ module Kabal
 
   def language_class_name(language)
     'Kabal::' + language.to_s
+  end
+
+  def convert_in_language(number, language)
+    if number > maximum_for(language) || number < minimum_for(language)
+      NumberOutRangeError.message
+    else
+      obj = Object.const_get(language_class_name(language)).new
+      obj.convert number
+    end
   end
 end
