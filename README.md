@@ -65,6 +65,10 @@ Interfaces:
     $> Kabal.to_text_in_language(1, :English) #=> "one"
     $> Kabal.to_text_in_language("1", "English") #=> "one"
     $> Kabal.to_text_in_language("1", :English) #=> "one"
+    $> Kabal.to_text_in_language(1, "en") #=> "one"
+    $> Kabal.to_text_in_language(1, :en) #=> "one"
+    $> Kabal.to_text_in_language("1", "en") #=> "one"
+    $> Kabal.to_text_in_language("1", :en) #=> "one"
     $> Kabal.to_text_in_language_by_index(1, 0) #=> "один"
     $> Kabal.to_text_in_language_by_index("1", 0) #=> "один"
     $> Kabal.current_language_supports_natural? #=> true
