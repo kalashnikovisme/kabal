@@ -14,6 +14,11 @@ class KabalTest < TestCase
     assert_equal "сто двадцать пять миллиардов сто двадцать пять миллионов сто двадцать пять тысяч сто двадцать пять", Kabal.to_text("125125125125")
   end
 
+  def test_to_number
+    Kabal.language = "Russian"
+    assert_equal 125125125125, Kabal.to_text("сто двадцать пять миллиардов сто двадцать пять миллионов сто двадцать пять тысяч сто двадцать пять")
+  end
+
   def test_to_text_in_language
     assert_equal "сто двадцать пять миллиардов сто двадцать пять миллионов сто двадцать пять тысяч сто двадцать пять", Kabal.to_text_in_language(125125125125, "Russian")
     assert_equal "сто двадцать пять миллиардов сто двадцать пять миллионов сто двадцать пять тысяч сто двадцать пять", Kabal.to_text_in_language("125125125125", "Russian")
@@ -28,20 +33,20 @@ class KabalTest < TestCase
   end
 
   def test_to_text_in_language_by_index_with_unsupport_language
-    assert_equal NoLanguageSupportError.message, Kabal.to_text_in_language_by_index(125125125125, 3)
-    assert_equal NoLanguageSupportError.message, Kabal.to_text_in_language_by_index("125125125125", 3)
+    assert_equal NoLanguageSupportError.new.message, Kabal.to_text_in_language_by_index(125125125125, 3).message
+    assert_equal NoLanguageSupportError.new.message, Kabal.to_text_in_language_by_index("125125125125", 3).message
   end
 
   def test_to_text_in_language_with_unsupported_language
-    assert_equal NoLanguageSupportError.message, Kabal.to_text_in_language(125125125125, "Elfin")
-    assert_equal NoLanguageSupportError.message, Kabal.to_text_in_language("125125125125", "Elfin")
+    assert_equal NoLanguageSupportError.new.message, Kabal.to_text_in_language(125125125125, "Elfin").message
+    assert_equal NoLanguageSupportError.new.message, Kabal.to_text_in_language("125125125125", "Elfin").message
   end
 
   def test_language_init_with_unsupported_language
     exception = assert_raises RuntimeError do
       Kabal.language = "Elfin"
     end
-    assert_equal NoLanguageSupportError.message, exception.message
+    assert_equal 'fail', exception.message
   end
 
   def test_supported_languages
@@ -88,7 +93,7 @@ class KabalTest < TestCase
   end
 
   def test_big_number
-    assert_equal NumberOutRangeError.message, Kabal.to_text_in_language(10000000000000000000000000000000000000, "Deutsch")
+    assert_equal NumberOutRangeError.new.message, Kabal.to_text_in_language(10000000000000000000000000000000000000, "Deutsch").message
   end
 
   def test_bad_number_test
