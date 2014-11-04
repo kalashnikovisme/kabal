@@ -25,6 +25,9 @@ module Kabal
   end
 
   #Text to number
+  def to_number(text)
+    Kabal::Convert::Text.text_to_number_in_language text, current_language
+  end
 
   #Languages methods
   def language=(language_to_set)

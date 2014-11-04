@@ -3,8 +3,8 @@ module Kabal
     module Number
       def self.number_to_text_in_language(number, language)
         number = string_convert number
-        language = get_name_of_language language
-        convert_in_language number, language
+        language_name = get_name_of_language language
+        convert_in_language number, language_name
       end
 
       def self.number_to_text_in_language_by_index(number, index)

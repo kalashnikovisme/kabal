@@ -31,6 +31,22 @@ module Kabal
       end
     end
 
+    #COMB THIS SHIT!!!
+    def reverse_convert(text)
+      words = text.split(' ').reverse
+      numbers = []
+      words.each_ do |word|
+        [:single, :two_words, :ten_powers].each do |key|
+          names[key].each do |name|
+            if word == name.last
+              numbers << name.first
+            end
+          end
+        end
+      end
+      numbers.join('').to_i
+    end
+
     def number_words(number)
       return natural_number_name number.round if natural? number
       fractional_number_name number if fractional? number
@@ -55,6 +71,10 @@ module Kabal
 
     def supports_negative?
       min_value < 0
+    end
+
+    def supports_reverse?
+      @supports[:reverse]
     end
 
     def min_value

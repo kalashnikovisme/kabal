@@ -15,8 +15,11 @@ class KabalTest < TestCase
   end
 
   def test_to_number
-    Kabal.language = "Russian"
-    assert_equal 125125125125, Kabal.to_text("сто двадцать пять миллиардов сто двадцать пять миллионов сто двадцать пять тысяч сто двадцать пять")
+    Kabal.language = "English"
+    assert_equal 1, Kabal.to_number('one')
+    assert_equal 99, Kabal.to_number('ninety nine')
+    assert_equal 999, Kabal.to_number('nine hundred ninety nine')
+    #assert_equal 125125125125, Kabal.to_number("сто двадцать пять миллиардов сто двадцать пять миллионов сто двадцать пять тысяч сто двадцать пять")
   end
 
   def test_to_text_in_language

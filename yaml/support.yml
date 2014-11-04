@@ -5,15 +5,18 @@ support:
       max: "10 ** 102"
     fractional:
       symbols: 16
+    reverse: false
   en:
     natural:
       min: "-(10 ** 66) + 1"
       max: "(10 ** 66) - 1"
     fractional:
       symbols: 16
+    reverse: true
   de:
     natural:
       min: "-(10 ** 24) + 1"
       max: "(10 ** 24) - 1"
     fractional:
       symbols: 16
+    reverse: false

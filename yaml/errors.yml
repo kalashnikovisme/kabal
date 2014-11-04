@@ -3,3 +3,4 @@ errors:
     1: "Number is out of the range for current language"
     2: "There is no support of such language yet"
     3: "Current language doesn't support fractional numbers"
+    4: "Language does not support reverse"
