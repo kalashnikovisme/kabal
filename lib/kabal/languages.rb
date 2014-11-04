@@ -4,12 +4,26 @@ module Kabal
     require 'kabal/languages/english'
     require 'kabal/languages/deutsch'
 
+    def self.supported_languages
+      languages = Kabal::Config::YamlLoader.yaml_object 'languages'
+      languages.keys
+    end
+
     def get_name_of_language(param)
       languages = Kabal::Config::YamlLoader.yaml_object 'languages'
       if languages[param]
         param
       elsif is_abbr? param, languages
         languages.keys.select { |key| languages[key] == param.to_s }.first
+      else
+        NoLanguageSupportError.new
+      end
+    end
+
+    def get_name_of_language_by_index(index)
+      languages = Kabal::Config::YamlLoader.yaml_object('languages').to_a
+      if languages[index]
+        languages[index][0]
       else
         NoLanguageSupportError.new
       end

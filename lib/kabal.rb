@@ -11,10 +11,22 @@ module Kabal
   include Errors
   include Convert
 
+  #Number to text
   def to_text(number)
     Kabal::Convert::Number.number_to_text_in_language number, current_language
   end
 
+  def to_text_in_language(number, language_at_once)
+    Kabal::Convert::Number.number_to_text_in_language number, language_at_once
+  end
+
+  def to_text_in_language_by_index(number, language_at_once_index)
+    Kabal::Convert::Number.number_to_text_in_language_by_index number, language_at_once_index
+  end
+
+  #Text to number
+
+  #Languages methods
   def language=(language_to_set)
     languages = Kabal::Config::YamlLoader.yaml_object 'languages'
     if languages[language_to_set]
@@ -24,29 +36,13 @@ module Kabal
     end
   end
 
-  def to_text_in_language(number, language_at_once)
-    Kabal::Convert::Number.number_to_text_in_language number, language_at_once
-  end
-
-  def to_text_in_language_by_index(number, language_at_once_index)
-    number = string_convert number
-    languages = Kabal::Config::YamlLoader.yaml_object('languages').to_a
-    if languages[language_at_once_index]
-      obj = Object.const_get(Kabal::Convert::Number.class_name_of(languages[language_at_once_index].first)).new
-      obj.convert number
-    else
-      NoLanguageSupportError.new
-    end
-  end
-
   def current_language
     @language ||= 'English'
     @language
   end
 
   def self.supported_languages
-    languages = Kabal::Config::YamlLoader.yaml_object 'languages'
-    languages.keys
+    Kabal::Languages.supported_languages
   end
 
   def current_language_supports_natural?
@@ -91,22 +87,6 @@ module Kabal
   end
 
   private
-
-  def string_convert(number)
-    if number.is_a? String
-      if string_is_float? number
-        Kernel::Float(number)
-      else
-        number.to_i
-      end
-    else
-      number
-    end
-  end
-
-  def string_is_float?(number)
-    number.include? '.'
-  end
 
   def convert_in_language(number, language)
     if language.is_a? StandardError
