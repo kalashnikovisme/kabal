@@ -19,5 +19,5 @@ support:
       symbols: 16
   rm:
     natural:
-      min: 0
-      max: 999
+      min: '0'
+      max: '999'
