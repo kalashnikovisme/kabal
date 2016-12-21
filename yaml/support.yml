@@ -19,7 +19,5 @@ support:
       symbols: 16
   rm:
     natural:
-      min: {min_of_your_realization}
-      max: {max_of_your_realization}
-    fractional:
-      symbols: {count_of_symbols_after_dot_that_you_realized}
+      min: 0
+      max: 999
